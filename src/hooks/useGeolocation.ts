@@ -9,16 +9,16 @@ type GeoLocationError = string;
 
 const useGeoLocation = () => {
     const [location, setLocation] = useState<GeoLocationPosition | null>(null);
-    const [error, setError] = useState<GeoLocationError | null>(null);
+    const [location_error, setLocation_error] = useState<GeoLocationError | null>(null);
 
     const refresh = () => {
         setLocation(null);
-        setError(null);
+        setLocation_error(null);
     };
 
     useEffect(() => {
         if (!navigator.geolocation) {
-            setError('Geolocation is not supported by the browser.');
+            setLocation_error('Geolocation is not supported by the browser.');
             return;
         }
 
@@ -28,13 +28,13 @@ const useGeoLocation = () => {
         };
 
         const handleError = (error: GeolocationPositionError) => {
-            setError(error.message);
+            setLocation_error(error.message);
         };
 
         navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
     }, []);
 
-    return { location, error, refresh };
+    return { location, location_error, refresh };
 };
 
 export default useGeoLocation;

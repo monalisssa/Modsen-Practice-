@@ -14,13 +14,13 @@ export const StyledInputRadiusFieldWrapper = styled.div`
 `;
 
 
-export const StyledInputRadiusField = styled.input`
+export const StyledInput = styled.input`
     border-radius: 10px;
     color: #000;
     border: 3px solid #C4C4C4;
     padding: 5px 30px 5px 10px; // reduced the right padding to make space for the "км" text
     opacity: 50%;
-    width: 30%;
+    width: 40%;
 `;
 
 export const StyledInputRadiusText = styled.span`

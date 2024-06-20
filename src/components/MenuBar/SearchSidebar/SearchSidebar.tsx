@@ -1,40 +1,35 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {DrawerWrapper} from "./styledSearchSidebar";
-import SearchField from "./SearchField/SearchField";
-import CategoriesSelectField from "./CategoriesSelectField/CategoriesSelectField";
-import SearchButton from "./SearchButton/SearchButton";
-import InputRadiusField from "./InputRadiusField/InputRadiusField";
 import Button from "../../UI/Button/Button";
 import search_icon from "../../../assets/images/search_icon.svg"
+import SearchField from "./SearchField";
+import CategoriesSelectField from "./CategoriesSelectField";
+import RadiusField from "./RadiusField";
+import {fetchGeoObjects} from "../../../store/actions/GeoObjectsActions";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
-interface SidebarProps {
-    open: boolean,
-    handleSearchObjects?: (value: string) => void,
-    handleRadiusChange?: (value: number) => void
+
+interface SearchSidebarProperties {
+    open: boolean;
 }
 
-const SearchSidebar: React.FC<SidebarProps> = ({open, handleSearchObjects, handleRadiusChange}) => {
+const SearchSidebar = ({ open }: SearchSidebarProperties) => {
+    const dispatch = useAppDispatch();
+    const geoObjects = useAppSelector((state) => state.geoObjectsReducer);
 
-    const [searchStr, setSearchStr] = useState("")
+    const loadGeoObjects = () => {
+        dispatch(fetchGeoObjects({ lat: geoObjects.coordinates[0], lng: geoObjects.coordinates[1] }, geoObjects.radius, geoObjects.filters));
 
-    const handleClickSearchButton = () =>
-    {
-        if (searchStr.trim() !== "") {
-            handleSearchObjects(searchStr);
-        }
-    }
+    };
 
-    const handleChangeSearchInput = (str: string) =>
-    {
-        setSearchStr(str)
-    }
-
+    const [searchValue, setSearchValue] = useState('')
     return (
-        <DrawerWrapper open={open} >
-            <SearchField handleChangeSearchInput={handleChangeSearchInput}/>
-            <CategoriesSelectField/>
-            <InputRadiusField handleRadiusChange={handleRadiusChange}/>
-            <Button icon={search_icon} bg_color={"#5E7BC7"} width={"100%"} handleSetSearchStr={handleClickSearchButton}/>
+        <DrawerWrapper open={open}>
+
+            <SearchField />
+            <CategoriesSelectField />
+            <RadiusField />
+            <Button onClick={loadGeoObjects} width={"100%"} bg_color={"#5E7BC7"} icon={search_icon} />
         </DrawerWrapper>
     );
 };

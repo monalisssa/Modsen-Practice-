@@ -1,20 +1,22 @@
 import React from 'react';
 import search_icon from "../../../assets/images/search_icon.svg";
-import {MenuBarButton} from "../../MenuBar/SearchSidebar/SearchButton/styledSearchButton";
+import {MenuBarButton} from "../../MenuBar/SearchSidebar/SearchButton/styled";
 import {StyledButton} from "./styledButton";
 
-// @ts-ignore
-const Button: React.FC<{
-    icon: any;
+
+interface ButtonProps {
+    icon: React.ReactNode;
     bg_color: string;
     width: string;
-    handleSetSearchStr: (str: string) => void; }> = ({ icon, bg_color, width, handleSetSearchStr }) => {
-    const handleClick = () => {
-        handleSetSearchStr("new search string");
-    };
+    onClick?: () => void;
+}
 
+
+
+const Button: React.FC<ButtonProps> = ({ icon, bg_color, width, onClick }) =>
+{
     return (
-        <StyledButton icon={icon} bg_color={bg_color} width={width} onClick={handleClick} />
+        <StyledButton icon={icon} bg_color={bg_color} width={width}  onClick={onClick}/>
     );
 };
 export default Button;

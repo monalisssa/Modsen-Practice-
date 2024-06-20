@@ -13,7 +13,7 @@ export const StyledSelectFieldWrapper = styled.div`
     }
 `;
 
-export const StyledSelectField = styled.div`
+export const Styled = styled.div`
     border-radius: 10px;
     width: 100%;
     color: #000;
@@ -40,7 +40,7 @@ export const StyledSelectList = styled.ul`
 `;
 
 
-export const StyledSelectListItem = styled.li<{icon: any}>`
+export const StyledSelectListItem = styled.li<{icon: any, selected: boolean}>`
     display: flex;
     align-items: center;
     gap: 20px;
@@ -50,6 +50,8 @@ export const StyledSelectListItem = styled.li<{icon: any}>`
     border-radius: 10px;
     line-height: 10px;
     font-size: 14px;
+    opacity: ${props => !props.selected ? ".5" : '1'};
+
     &::before {
         content: "";
         display: block;
