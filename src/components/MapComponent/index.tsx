@@ -1,71 +1,73 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {YMaps, Map, Panorama, GeolocationControl, Placemark, Circle, SearchControl} from "@pbe/react-yandex-maps";
+import {
+    YMaps,
+    Map,
+    Panorama,
+    GeolocationControl,
+    Placemark,
+    Circle,
+    SearchControl,
+    ZoomControl
+} from "@pbe/react-yandex-maps";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import useGeoLocation from "../../hooks/useGeolocation";
-import {setCoordinates} from "../../store/reducers/GeoObjectsSlice";
+import {setSearchObject} from "../../store/reducers/geoObjectsSlice";
 
 
 const MapComponent = () => {
 
      const {location: userLocation, location_error, refresh} = useGeoLocation()
-     const [icons, setIcons] = useState([])
      const geoObjects = useAppSelector(state => state.geoObjectsReducer)
      const dispatch = useAppDispatch()
-     const [curCoordinates, setCurCoordinates] = useState([])
+     const searchRef = useRef(null);
 
-    const searchRef = useRef(null);
-    useEffect(() => {
-        if(userLocation) dispatch(setCoordinates([userLocation.latitude, userLocation.longitude]))
-    }, [userLocation]);
+     useEffect(() => {
+        if(userLocation) dispatch(setSearchObject({name: "", point: [userLocation.latitude, userLocation.longitude]}))
+     }, [userLocation]);
 
 
-    useEffect(() => {
+     useEffect(() => {
         if (searchRef.current) {
-            const searchControl = searchRef.current;
-            const onLoad = (event: { get: (arg0: string) => any; }) => {
-                if (!event.get('skip')) {
-                    searchControl.showResult(searchControl.getResult(0));
-                }
-            };
+            searchRef.current.search(geoObjects.searchObject.name).then(function () {
+                    const geoObjectsArray = searchRef.current.getResultsArray();
+                    if (geoObjectsArray.length) {
+                        dispatch(setSearchObject({name: geoObjects.searchObject.name, point: geoObjectsArray[0].geometry._coordinates}))
 
-            searchControl.events.add('load', onLoad);
+                    }
+                });
+            }
 
-            return () => {
-                searchControl.events.remove('load', onLoad);
-            };
-        }
-    }, []);
-
-    useEffect(() => {
-        if (searchRef.current) {
-            searchRef.current.search(geoObjects.geo_objects.name);
-        }
-    }, [geoObjects.coordinates]);
-
+    }, [geoObjects.searchObject.name]);
 
     if (!userLocation) {
         return <div>Loading...</div>;
     }
 
-
-
+    const handleResultHide = () =>
+    {
+        searchRef.current.clear();
+    }
     return (
         <>
 
                 <Map
                     defaultState={{
-                        center: geoObjects.coordinates,
-                        zoom: 15,
+                        center: geoObjects.searchObject.point,
+                        zoom: 17,
                         controls: [],
+
+                    }}
+                    defaultOptions={{
+                        yandexMapDisablePoiInteractivity: true
                     }}
                     width={1500}
-                    height={740}
+                    height={730}
                 >
                     <GeolocationControl options={{ float: "left" }} />
 
-
+                    <ZoomControl />
                     <Placemark
-                        geometry={geoObjects.coordinates}
+                        geometry={geoObjects.searchObject.point}
                         options={{
                             zIndex: 100,
                         }}
@@ -81,10 +83,11 @@ const MapComponent = () => {
                             maxWidth: 190,
                             provider: 'yandex#search',
                             noSelect: true,
-                            visible: false
+                            visible: false,
+                            noPlacemark: true,
+
                         }}
-
-
+                        onResultShow = {handleResultHide}
                     />
 
                     {geoObjects.geo_objects && geoObjects.geo_objects.length > 0 &&
@@ -105,7 +108,7 @@ const MapComponent = () => {
                         ))}
 
                     <Circle
-                        geometry={[geoObjects.coordinates, Number(geoObjects.radius + 100)]}
+                        geometry={[geoObjects.searchObject.point, geoObjects.radius + 50]}
                         options={{
                             draggable: true,
                             fillColor: "#DB709377",
