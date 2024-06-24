@@ -5,7 +5,7 @@ import Form from "../index";
 import {setUser} from "../../../store/reducers/userSlice";
 
 
-const SignUp = () => {
+const Register = () => {
     const dispatch = useAppDispatch();
     const handleRegister = (email: string, password: string) => {
         const auth = getAuth();
@@ -29,4 +29,4 @@ const SignUp = () => {
     )
 }
 
-export default SignUp;
+export default Register;

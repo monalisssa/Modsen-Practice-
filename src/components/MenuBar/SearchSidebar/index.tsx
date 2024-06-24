@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {DrawerWrapper} from "./styledSearchSidebar";
+import {DrawerWrapper} from "./styled";
 import Button from "../../UI/Button/Button";
 import search_icon from "../../../assets/images/search_icon.svg"
 import SearchField from "./SearchField";
@@ -13,15 +13,14 @@ interface SearchSidebarProperties {
     open: boolean;
 }
 
-const SearchSidebar = ({ open }: SearchSidebarProperties) => {
+const SideBar = ({ open }: SearchSidebarProperties) => {
     const dispatch = useAppDispatch();
     const geoObjects = useAppSelector((state) => state.geoObjectsReducer);
     const loadGeoObjects = () => {
-        dispatch(fetchGeoObjects({ lat: geoObjects.searchObject.point[0], lng: geoObjects.searchObject.point[1] }, geoObjects.radius, geoObjects.filters));
-
+        dispatch(fetchGeoObjects({ lat: geoObjects.searchObject.point[0],
+            lng: geoObjects.searchObject.point[1] }, geoObjects.radius, geoObjects.filters));
     };
 
-    const [searchValue, setSearchValue] = useState('')
     return (
         <DrawerWrapper open={open}>
 
@@ -32,4 +31,4 @@ const SearchSidebar = ({ open }: SearchSidebarProperties) => {
         </DrawerWrapper>
     );
 };
-export default SearchSidebar;
+export default SideBar;

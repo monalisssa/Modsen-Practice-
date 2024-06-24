@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
-import {MenuBarContainer} from "./styledMenuBar";
-import Index from "./SearchSidebar/SearchButton";
-
+import {MenuBarContainer} from "./styled";
 import {MenuBarButton} from "./SearchSidebar/SearchButton/styled";
 import search_icon from "../../assets/images/search_icon.svg"
-import SearchSidebar from "./SearchSidebar/SearchSidebar";
-import {Map, SearchControl, YMaps} from "@pbe/react-yandex-maps";
+import SideBar from "./SearchSidebar";
+
 
 
 const MenuBar = () => {
@@ -18,7 +16,7 @@ const MenuBar = () => {
                 <MenuBarButton icon={search_icon} onClick={() => setOpenSearchSideBar(!openSearchSideBar)} />
             </MenuBarContainer>
             {
-                openSearchSideBar && <SearchSidebar open={openSearchSideBar} />
+                openSearchSideBar && <SideBar open={openSearchSideBar} />
             }
         </>
 

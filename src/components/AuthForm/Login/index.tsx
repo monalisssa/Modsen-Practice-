@@ -1,14 +1,16 @@
 import React from 'react';
-import {useAppDispatch} from "../../hooks/redux";
-import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
-import {setUser} from "../../store/reducers/userSlice";
-const SignUp = () => {
-    const dispatch = useAppDispatch();
-    const {push} = useHistory();
 
-    const handleRegister = (email: string, password: string) => {
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import Form from "../index";
+import {useAppDispatch} from "../../../hooks/redux";
+import {setUser} from "../../../store/reducers/userSlice";
+
+
+const Login = () => {
+    const dispatch = useAppDispatch();
+    const handleLogin = (email: string, password: string) => {
         const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
+        signInWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
                 console.log(user);
                 dispatch(setUser({
@@ -16,17 +18,16 @@ const SignUp = () => {
                     id: user.uid,
                     token: user.refreshToken,
                 }));
-                push('/');
             })
-            .catch(console.error)
+            .catch(() => alert('Invalid user!'))
     }
 
     return (
         <Form
-            title="register"
-            handleClick={handleRegister}
+            type="login"
+            handleClick={handleLogin}
         />
     )
 }
 
-export default Login;
+export default Login
