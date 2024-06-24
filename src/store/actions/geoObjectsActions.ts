@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {searchObject, searchObjects} from "../../utils/api/searchObjects";
+import {searchObjects} from "../../utils/api/searchObjects";
 import {AppDispatch} from "../index";
-import {geoObjectsSlice, setCoordinates} from "../reducers/GeoObjectsSlice";
+import {geoObjectsSlice, setSearchObject} from "../reducers/geoObjectsSlice";
 
 
 
@@ -16,14 +16,3 @@ export const fetchGeoObjects = (coordinates: { lat: number; lng: number }, radiu
        }
 }
 
-
-export const fetchOneGeoObject = (search_str: string) => async (dispatch: AppDispatch) => {
-    try {
-        dispatch(geoObjectsSlice.actions.geoObjectsFetching())
-        const response = await searchObject(search_str);
-        dispatch(geoObjectsSlice.actions.geoObjectsFetchingSuccess(response))
-        dispatch(setCoordinates([response.point.lat, response.point.lon]))
-    } catch (e) {
-        dispatch(geoObjectsSlice.actions.geoObjectsFetchingError(e.message))
-    }
-}
