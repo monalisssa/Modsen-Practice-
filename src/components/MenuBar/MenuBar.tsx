@@ -15,6 +15,7 @@ const MenuBar = () => {
 
             <MenuBarContainer>
                 <MenuBarButton icon={search_icon} onClick={() => setOpenSearchSideBar(!openSearchSideBar)} />
+                <MenuBarButton icon={search_icon} onClick={() => setOpenSearchSideBar(!openSearchSideBar)} />
             </MenuBarContainer>
             {
                 openSearchSideBar && <SearchSidebar open={openSearchSideBar} />

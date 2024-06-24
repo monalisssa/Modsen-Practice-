@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {SearchInput} from "./styled";
-import search_icon from "../../../../assets/images/search_icon.svg"
+import search_icon from "../../../../assets/images/search_icon_2.svg"
 import {useAppDispatch, useAppSelector} from "../../../../hooks/redux";
-import {setCoordinates} from "../../../../store/reducers/GeoObjectsSlice";
-import {fetchOneGeoObject} from "../../../../store/actions/GeoObjectsActions";
+import {setSearchObject} from "../../../../store/reducers/geoObjectsSlice";
+
 
 
 
@@ -13,13 +13,12 @@ const SearchField = () => {
 
     const geoObjects = useAppSelector((state) => state.geoObjectsReducer);
 
-
     const handleSearchValues = () =>
     {
-        dispatch(fetchOneGeoObject(searchValue))
+        dispatch(setSearchObject({name: searchValue, point: [0,0]}))
     }
     return (
-        <><SearchInput icon={search_icon} onChange={(e) => setSearchValue(e.target.value)}/>
+        <><SearchInput icon={search_icon} onChange={(e) => setSearchValue(e.target.value)} placeholder="Поиск места..."/>
     <button onClick={handleSearchValues}>РУН</button></>
     );
 };

@@ -23,7 +23,7 @@ export const DrawerWrapper = styled.div<{open: boolean}>`
     position: fixed;
     z-index: 10;
     width: 350px;
-    height: 97%;
+    height: 92%;
     padding: 30px;
     margin: 10px;
     background-color: #fff;

@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {Styled, StyledSelectFieldWrapper, StyledSelectList, StyledSelectListItem} from "./styled";
-import {arrayFilterCategories} from "../../../../constants/ArrayFilterCategories";
+import {arrayFilterCategories} from "../../../../constants/arrayFilterCategories";
 import {useState} from "react";
-import {fetchGeoObjects} from "../../../../store/actions/GeoObjectsActions";
+import {fetchGeoObjects} from "../../../../store/actions/geoObjectsActions";
 import {useAppDispatch} from "../../../../hooks/redux";
-import {setFilters} from "../../../../store/reducers/GeoObjectsSlice";
+import {setFilters} from "../../../../store/reducers/geoObjectsSlice";
 
 const CategoriesSelectField = () => {
     const [filterCategories, setFilterCategories] = useState([]);

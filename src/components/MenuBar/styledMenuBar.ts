@@ -6,7 +6,7 @@ export const MenuBarContainer = styled.div`
     border-radius: 5px;
     z-index: 10;
     width: 90px;
-    height: 97%;
+    height: 92%;
     color: #000;
     background-color: #fff;
     padding: 20px;

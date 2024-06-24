@@ -19,7 +19,7 @@ export const Styled = styled.div`
     color: #000;
     border: 3px solid #C4C4C4;
     padding: 15px;
-    height: 350px;
+    height: 320px;
 
     
 `;
@@ -29,7 +29,7 @@ export const StyledSelectList = styled.ul`
    flex-direction: column;
 
     overflow-y: scroll;
-    max-height: 340px;
+    max-height: 300px;
     &::-webkit-scrollbar {
         width: 5px;
     }

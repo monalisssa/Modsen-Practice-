@@ -5,7 +5,7 @@ import search_icon from "../../../assets/images/search_icon.svg"
 import SearchField from "./SearchField";
 import CategoriesSelectField from "./CategoriesSelectField";
 import RadiusField from "./RadiusField";
-import {fetchGeoObjects} from "../../../store/actions/GeoObjectsActions";
+import {fetchGeoObjects} from "../../../store/actions/geoObjectsActions";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 
@@ -16,9 +16,8 @@ interface SearchSidebarProperties {
 const SearchSidebar = ({ open }: SearchSidebarProperties) => {
     const dispatch = useAppDispatch();
     const geoObjects = useAppSelector((state) => state.geoObjectsReducer);
-
     const loadGeoObjects = () => {
-        dispatch(fetchGeoObjects({ lat: geoObjects.coordinates[0], lng: geoObjects.coordinates[1] }, geoObjects.radius, geoObjects.filters));
+        dispatch(fetchGeoObjects({ lat: geoObjects.searchObject.point[0], lng: geoObjects.searchObject.point[1] }, geoObjects.radius, geoObjects.filters));
 
     };
 
