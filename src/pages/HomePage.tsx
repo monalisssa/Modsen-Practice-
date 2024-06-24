@@ -1,7 +1,7 @@
 import React from 'react';
-import MenuBar from "../components/MenuBar/MenuBar";
 import {YMaps} from "@pbe/react-yandex-maps";
-import MapComponent from "../components/MapComponent/MapComponent";
+import MapComponent from "../components/MapComponent";
+import MenuBar from "../components/MenuBar";
 
 const HomePage = () => {
     return (

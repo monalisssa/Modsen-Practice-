@@ -42678,9 +42678,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.css */ "./src/components/App.css");
-/* harmony import */ var _MapComponent_MapComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MapComponent/MapComponent */ "./src/components/MapComponent/MapComponent.tsx");
+/* harmony import */ var _MapComponent_MapComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Index/Index */ "./src/components/MapComponent/MapComponent.tsx");
 /* harmony import */ var _pbe_react_yandex_maps__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @pbe/react-yandex-maps */ "./node_modules/@pbe/react-yandex-maps/dist/react-yandex-maps.esm.js");
-/* harmony import */ var _MenuBar_MenuBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MenuBar/MenuBar */ "./src/components/MenuBar/MenuBar.tsx");
+/* harmony import */ var _MenuBar_MenuBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Index/Index */ "./src/components/MenuBar/MenuBar.tsx");
 
 
 
@@ -42695,7 +42695,7 @@ var App = function () {
 
 /***/ "./src/components/MapComponent/MapComponent.tsx":
 /*!******************************************************!*\
-  !*** ./src/components/MapComponent/MapComponent.tsx ***!
+  !*** ./src/components/Index/Index.tsx ***!
   \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -42734,7 +42734,7 @@ var MapComponent = function () {
 
 /***/ "./src/components/MenuBar/MenuBar.tsx":
 /*!********************************************!*\
-  !*** ./src/components/MenuBar/MenuBar.tsx ***!
+  !*** ./src/components/Index/Index.tsx ***!
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -42766,7 +42766,7 @@ var MenuBar = function () {
 
 /***/ "./src/components/MenuBar/SearchButton/SearchButton.tsx":
 /*!**************************************************************!*\
-  !*** ./src/components/MenuBar/Index/index.tsx ***!
+  !*** ./src/components/Index/Index/index.tsx ***!
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -42791,7 +42791,7 @@ var SearchButton = function () {
 
 /***/ "./src/components/MenuBar/SearchButton/styledSearchButton.ts":
 /*!*******************************************************************!*\
-  !*** ./src/components/MenuBar/Index/styled.ts ***!
+  !*** ./src/components/Index/Index/styled.ts ***!
   \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -42814,7 +42814,7 @@ var templateObject_1;
 
 /***/ "./src/components/MenuBar/styledMenuBar.ts":
 /*!*************************************************!*\
-  !*** ./src/components/MenuBar/styledMenuBar.ts ***!
+  !*** ./src/components/Index/styled.ts ***!
   \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 

@@ -1,29 +1,46 @@
-import {createRoot} from "react-dom/client";
-import {App} from "./components/App";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import {ReactDOM} from "react";
-import {Provider} from "react-redux";
-import {setupStore} from "./store";
-const root = document.getElementById('root')
-const store = setupStore();
+import { createRoot } from "react-dom/client";
+import { App } from "./components/App";
+import {BrowserRouter, createBrowserRouter,  RouterProvider} from "react-router-dom";
+import { Provider } from "react-redux";
+import { setupStore } from "./store";
+import './firebase'
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
-if(!root)
-{
-    throw new Error('root not found')
+const root = document.getElementById('root');
+
+if(!root) {
+    throw new Error('root not found');
 }
 
-const container = createRoot(root)
+const container = createRoot(root);
+
+const store = setupStore();
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
+        children: [
+            {
+                index: true,
+                element: <HomePage />
+            },
+            {
+                path: '/login',
+                element: <LoginPage />
+            },
+            {
+                path: '/register',
+                element: <RegisterPage />
+            }
+        ]
     },
 ]);
 
 container.render(
-    <Provider store={store}>
-        <RouterProvider router={router} />
-    </Provider>
+        <Provider store={store}>
+            <RouterProvider router={router}/>
+        </Provider>
 );
-
