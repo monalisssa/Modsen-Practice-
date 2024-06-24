@@ -3,8 +3,10 @@ import webpack from 'webpack';
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import type {Configuration as DevServerConfiguration} from "webpack-dev-server"
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-type Mode = 'production' | 'development';
+import Dotenv from 'dotenv-webpack'
 
+
+type Mode = 'production' | 'development';
 interface EnvVariables {
     mode: Mode,
     port: number
@@ -18,7 +20,8 @@ export default (env : EnvVariables) =>
         output: {
             path: path.resolve(__dirname, 'build'),
             filename: '[name].[contenthash].js',
-            clean: true
+            clean: true,
+            publicPath: '/'
         },
         plugins: [
             new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html') }),
@@ -26,7 +29,8 @@ export default (env : EnvVariables) =>
             new MiniCssExtractPlugin( {
                 filename: 'css/[name].[contenthash:8].css',
                 chunkFilename: 'css/[name].[contenthash.8].css'
-            })
+            }),
+            new Dotenv()
         ].filter(Boolean),
 
         module: {
@@ -54,10 +58,15 @@ export default (env : EnvVariables) =>
             extensions: ['.tsx', '.ts', '.js'],
         },
         devtool: isDev ? "inline-source-map" : false,
-        devServer: isDev ? {
+        devServer: {
             port: env.port ?? 3000,
-            open: true
-        } : undefined
+            static: {
+                directory: path.join(__dirname, 'dist'),
+            },
+            hot: true,
+            open: true,
+            historyApiFallback: true,
+        }
     }
     return config
 }
