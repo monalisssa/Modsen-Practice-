@@ -11,22 +11,7 @@ export interface IFilterIcon {
 }
 
 export const arrayFilterCategories: IFilterIcon[] = [
-    {
-        url: foodIcon,
-        name: "Еда",
-        category_id: [159, 164],
-        isSelected: false
-    },
-    {
-        url: cultureIcon,
-        name: "Культура",
-        category_id: [142],
-        isSelected: false
-    },
-    {
-        url: coffeeIcon,
-        name: "Кафе",
-        category_id: [161],
-        isSelected: false
-    }
+    {url: foodIcon, name: "Еда", category_id: [159, 164], isSelected: false},
+    {url: cultureIcon, name: "Культура", category_id: [142], isSelected: false},
+    {url: coffeeIcon, name: "Кафе", category_id: [161], isSelected: false}
 ]

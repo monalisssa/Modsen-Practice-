@@ -1,7 +1,7 @@
 import axios from "axios";
-import {IFilterIcon} from "../../constants/ArrayFilterCategories";
+import {IFilterIcon} from "../../constants/arrayFilterCategories";
 
-const API_KEY = "0fcd27f9-6d34-451d-a5d2-17cdb0d2f45a"
+const API_KEY = "fe79cc20-873d-4aa7-8d56-dfb6e27348aa"
 
 export async function searchObjects(coordinates: { lat: number; lng: number }, radius: number, filters: Array<IFilterIcon>) {
     try {
@@ -25,17 +25,3 @@ export async function searchObjects(coordinates: { lat: number; lng: number }, r
     }
 }
 
-
-export async function searchObject(str_value: string) {
-    try {
-        const response = await axios.get(`https://catalog.api.2gis.com/3.0/items?q=${str_value}&fields=items.point,items.rubrics&radius=2000&key=${API_KEY}`);
-        if(response.data.result)
-        {
-            return response.data.result.items[0]
-
-        }
-
-    } catch (error) {
-        console.error(error);
-    }
-}
