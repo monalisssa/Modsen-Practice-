@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {IFilterIcon} from "../../constants/arrayFilterCategories";
+import {IFilterIcon} from "../../constants/arrayCategories";
 
 
 interface UserState {

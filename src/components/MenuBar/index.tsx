@@ -3,7 +3,7 @@ import {MenuBarButtonsContainer, MenuBarContainer} from "./styled";
 import search_icon from "../../assets/images/search_icon.svg"
 import favorites_icon from "../../assets/images/favorites_icon.svg"
 import auth_icon from "../../assets/images/auth_icon.svg"
-import SideBar from "./SearchSidebar";
+import SideBar from "../SideBar";
 import Button from "../UI/Button/Button";
 import {Link, useLocation} from "react-router-dom";
 import {GeoObject} from "../../../types";

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {SearchInput, SearchInputWrapper} from "./styled";
-import search_icon from "../../../../assets/images/search_icon_2.svg"
-import {useAppDispatch, useAppSelector} from "../../../../hooks/redux";
-import {setSearchObject} from "../../../../store/reducers/geoObjectsSlice";
+import search_icon from "../../../assets/images/search_icon_2.svg"
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
+import {setSearchObject} from "../../../store/reducers/geoObjectsSlice";
 
 
 

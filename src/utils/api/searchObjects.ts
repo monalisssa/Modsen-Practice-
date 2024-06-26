@@ -1,5 +1,5 @@
 import axios from "axios";
-import {IFilterIcon} from "../../constants/arrayFilterCategories";
+import {IFilterIcon} from "../../constants/arrayCategories";
 
 const API_KEY = "fe79cc20-873d-4aa7-8d56-dfb6e27348aa"
 

@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {DrawerWrapper} from "./styled";
-import Button from "../../UI/Button/Button";
-import search_icon from "../../../assets/images/search_icon.svg"
-import SearchField from "./SearchField";
-import CategoriesSelectField from "./CategoriesSelectField";
+import Button from "../UI/Button/Button";
+import search_icon from "../../assets/images/search_icon.svg"
+import SearchField from "./SearchBar";
+import CategoriesSelectField from "./CategoriesSelect";
 import RadiusField from "./RadiusField";
-import {fetchGeoObjects} from "../../../store/actions/geoObjectsActions";
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import InfoCard from "../InfoCard";
-import {GeoObject} from "../../../../types";
+import {fetchGeoObjects} from "../../store/actions/geoObjectsActions";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import InfoCard from "./InfoCard";
+import {GeoObject} from "../../../types";
 
 
 interface SearchSidebarProperties {

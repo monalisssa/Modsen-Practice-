@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react';
 import {Styled, StyledSelectFieldWrapper, StyledSelectList, StyledSelectListItem} from "./styled";
-import {arrayFilterCategories} from "../../../../constants/arrayFilterCategories";
+import {arrayCategories} from "../../../constants/arrayCategories";
 import {useState} from "react";
-import {fetchGeoObjects} from "../../../../store/actions/geoObjectsActions";
-import {useAppDispatch, useAppSelector} from "../../../../hooks/redux";
-import {setFilters} from "../../../../store/reducers/geoObjectsSlice";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
+import {setFilters} from "../../../store/reducers/geoObjectsSlice";
 
 const CategoriesSelectField = () => {
     const [filterCategories, setFilterCategories] = useState([]);
@@ -14,7 +13,7 @@ const CategoriesSelectField = () => {
     useEffect(() => {
         if (geoObjects.filters && geoObjects.filters.length > 0) {
             setFilterCategories(
-                arrayFilterCategories.map((el) => ({
+                filterCategories.map((el) => ({
                     ...el,
                     isSelected: geoObjects.filters.some((filter) =>
                         filter.categories.some((filterId) => el.categories.includes(filterId))
@@ -22,7 +21,7 @@ const CategoriesSelectField = () => {
                 }))
             );
         } else {
-            setFilterCategories(arrayFilterCategories);
+            setFilterCategories(filterCategories);
         }
     }, [geoObjects.items]);
 
