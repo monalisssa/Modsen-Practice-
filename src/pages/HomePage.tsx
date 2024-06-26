@@ -1,18 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {YMaps} from "@pbe/react-yandex-maps";
 import MapComponent from "../components/MapComponent";
 import MenuBar from "../components/MenuBar";
+import {GeoObject} from "../../types";
+import {API_KEY, SUGGEST_API_KEY} from "../constants/apiKeys";
+
 
 const HomePage = () => {
+
+    const [selectedObject, setSelectedObject] = useState<GeoObject>(null)
+
+    const handleSetSelectedObject = (item: GeoObject) =>
+    {
+        setSelectedObject(item)
+    }
+
     return (
        <>
-           <MenuBar />
+           <MenuBar selectedObject = {selectedObject} setSelectedObject={setSelectedObject}/>
            <YMaps query={{
-               apikey: "6e33a64e-be02-4ac0-a8dd-a2e57798b0ab",
-               suggest_apikey: "aa195e7e-687e-4a99-9ab9-ff92d8c7186f"
+               apikey: API_KEY,
+               suggest_apikey: SUGGEST_API_KEY
            }}>
-               <MapComponent/>
+               <MapComponent selectObject={handleSetSelectedObject}/>
            </YMaps>
+
+
+
        </>
     );
 };

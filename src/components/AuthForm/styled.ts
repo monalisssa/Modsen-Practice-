@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 
 interface RegistrationInputProps {
     type: string;
@@ -7,19 +7,53 @@ interface RegistrationInputProps {
     minLength?: number;
 }
 
+const slideIn = keyframes`
+  from {
+    transform: translateX(-50%) scale(0);
+  }
+  to {
+    transform: translateX(-50%) scale(1);
+  }
+`;
+
+export const ModalContainer =  styled.div`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    background-color: rgb(0,0,0,.7);
+    
+`;
 export const RegistrationModal = styled.div`
-    margin: 150px auto;
+    position: absolute;
+    top: 20%;
+    left:50%;
+    transform: translateX(-50%);
     width: 25%;
     min-height: 300px;
     border-radius: 10px;
-    border: 1px solid #ccc;
-    box-shadow: 10px 10px 20px 10px #9ca3af;
+    box-shadow: 5px 5px 10px #000;
+    z-index: 100;
+    background-color: #fff;
+
+    animation-duration: .6s;
+    animation-name: ${(props) => slideIn};
     
+    
+    & a{
+        color: #C75E5E;
+        transition: all .3s;
+    }
+
+    & a:hover{
+        color: #000;
+    }
+
 `;
 
 export const RegistrationModalHeader = styled.div`
     background-color: #000;
-    padding: 30px;
+    padding: 20px;
     text-align: center;
     color: #fff;
     font-size: 20px;
@@ -34,7 +68,6 @@ export const RegistrationModalContent = styled.form`
     justify-content: center;
     align-items: center;
     gap: 20px
-    
 `;
 
 
