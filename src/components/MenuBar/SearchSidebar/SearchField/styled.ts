@@ -1,18 +1,32 @@
 import styled from "styled-components";
 
-export const SearchInput = styled.input<{icon: any}>`
-    border-radius: 5px;
+export const SearchInput = styled.input<{icon: string}>`
+    border-radius: 8px;
     width: 100%;
     color: #000;
     border: 3px solid #C4C4C4;
-    padding: 5px 40px 5px 30px;
+    padding: 10px 60px;
     opacity: 50%;
+    font-family: Mont, sans-serif;
+    font-size: 15px;
+`;
+
+export const SearchInputWrapper = styled.div`
+    display: flex;
     position: relative;
-  
-    &:before {
+    & img{
         position: absolute;
         top: 50%;
-        content: url(${(props) => props.icon});
+        left: 25px;
         transform: translateY(-50%);
+        width: 20px;
+        opacity: 50%;
+        z-index: 20;
+        cursor: pointer;
+        transition: all .3s;
+    }
+    
+    & img:hover{
+        transform: translateY(-50%) scale(1.1);
     }
 `;

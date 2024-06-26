@@ -2,14 +2,13 @@ import styled from "styled-components";
 
 
 export const StyledSelectFieldWrapper = styled.div`
-    margin-top: 30px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     
     & h2{
         font-weight: 600;
-        font-size: 18px;
+        font-size: 17px;
     }
 `;
 

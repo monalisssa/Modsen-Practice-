@@ -22,16 +22,18 @@ const slideOut = keyframes`
 export const DrawerWrapper = styled.div<{open: boolean}>`
     position: fixed;
     z-index: 10;
-    width: 350px;
-    height: 92%;
-    padding: 30px;
+    width: 400px;
+    height: 97%;
+    padding: 25px;
     margin: 10px;
     background-color: #fff;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
     animation-name: ${(props) => props.open ? slideIn : slideOut};
-   
+    display: flex;
+    flex-direction: column;
+    gap:20px;
     
 `;
 

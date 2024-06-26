@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 export const StyledInputRadiusFieldWrapper = styled.div`
-    margin-top: 30px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-
+    margin-bottom: 30px;
     & h2{
         font-weight: 600;
-        font-size: 18px;
+        font-size: 17px;
     }
     
 `;
