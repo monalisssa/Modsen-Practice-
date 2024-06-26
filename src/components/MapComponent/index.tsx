@@ -1,20 +1,33 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {
-    YMaps,
     Map,
-    Panorama,
     GeolocationControl,
     Placemark,
     Circle,
     SearchControl,
-    ZoomControl
 } from "@pbe/react-yandex-maps";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import useGeoLocation from "../../hooks/useGeolocation";
 import {setSearchObject} from "../../store/reducers/geoObjectsSlice";
+import {GeoObject} from "../../../types";
 
 
-const MapComponent = () => {
+
+interface MapComponentProps {
+    selectObject: (item: GeoObject) => void;
+}
+
+const circleOptions = {
+    draggable: true,
+    fillColor: "#5E7BC733",
+    strokeColor: "#990066",
+    strokeOpacity: 0.8,
+    strokeWidth: 5,
+};
+
+
+
+const MapComponent = ({ selectObject }: MapComponentProps) => {
 
      const {location: userLocation, location_error, refresh} = useGeoLocation()
      const geoObjects = useAppSelector(state => state.geoObjectsReducer)
@@ -39,6 +52,19 @@ const MapComponent = () => {
 
     }, [geoObjects.searchObject.name]);
 
+    const getPlacemarkOptions = (object: GeoObject, geoObjects: any) => {
+        const matchingCategory = geoObjects.filters.find((category: any) =>
+            object.rubrics.some((rubric: any) =>
+                category.category_id.includes(Number(rubric.id))
+            )
+        );
+        return {
+            iconLayout: 'default#image',
+            iconImageHref: matchingCategory?.url,
+            iconImageSize: [30, 42],
+        };
+    };
+
     if (!userLocation) {
         return <div>Loading...</div>;
     }
@@ -49,7 +75,6 @@ const MapComponent = () => {
     }
     return (
         <>
-
                 <Map
                     defaultState={{
                         center: geoObjects.searchObject.point,
@@ -60,12 +85,11 @@ const MapComponent = () => {
                     defaultOptions={{
                         yandexMapDisablePoiInteractivity: true
                     }}
-                    width={1500}
-                    height={730}
+                    width={1535}
+                    height={735}
                 >
                     <GeolocationControl options={{ float: "left" }} />
 
-                    <ZoomControl />
                     <Placemark
                         geometry={geoObjects.searchObject.point}
                         options={{
@@ -74,56 +98,34 @@ const MapComponent = () => {
                     />
 
                     <SearchControl
-
                         instanceRef={(ref) => {
                             searchRef.current = ref;
                         }}
                         options={{
-                            float: 'right',
-                            maxWidth: 190,
                             provider: 'yandex#search',
                             noSelect: true,
-                            visible: false,
-                            noPlacemark: true,
-
+                            visible: false
                         }}
                         onResultShow = {handleResultHide}
                     />
 
-                    {geoObjects.geo_objects && geoObjects.geo_objects.length > 0 &&
-                        geoObjects.geo_objects.map((object: { id: number; point: { lat: number; lon: number}; rubrics: any[]; }) => (
+                    {geoObjects.items && geoObjects.items.length > 0 &&
+                        geoObjects.items.map((object: GeoObject) => (
                             <Placemark
                                 key={object.id}
                                 geometry={[object.point.lat, object.point.lon]}
-                                options={{
-                                    iconLayout: 'default#image',
-                                    iconImageHref: geoObjects.filters.find((category) =>
-                                        object.rubrics.some((rubric) =>
-                                            category.category_id.includes(Number(rubric.id))
-                                        )
-                                    )?.url,
-                                    iconImageSize: [30, 42],
-                                }}
+                                options={getPlacemarkOptions(object, geoObjects)}
+                                onClick={() => selectObject(object)}
                             />
                         ))}
 
                     <Circle
                         geometry={[geoObjects.searchObject.point, geoObjects.radius + 50]}
-                        options={{
-                            draggable: true,
-                            fillColor: "#DB709377",
-                            strokeColor: "#990066",
-                            strokeOpacity: 0.8,
-                            strokeWidth: 5,
-                        }}
+                        options={circleOptions}
                     />
 
                 </Map>
-
-
-
         </>
-
 
     );
 };
