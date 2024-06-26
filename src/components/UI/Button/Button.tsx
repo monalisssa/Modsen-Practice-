@@ -1,14 +1,12 @@
 import React from 'react';
-import search_icon from "../../../assets/images/search_icon.svg";
-import {MenuBarButton} from "../../MenuBar/SearchSidebar/SearchButton/styled";
-import {StyledButton} from "./styledButton";
-import {text} from "node:stream/consumers";
+import {StyledButton, IconWrapper} from "./styledButton";
 
 
 interface ButtonProps {
-    icon?: React.ReactNode;
+    icon?: any;
     text?: string,
     bg_color: string;
+    icon_color: string,
     width: string;
     type?: 'button' | 'submit' | 'reset';
     onClick?: () => void | ((email: string, pass: string) => void);
@@ -17,10 +15,19 @@ interface ButtonProps {
 
 
 
-const Button: React.FC<ButtonProps> = ({ icon, bg_color, width, onClick, children, type }) =>
-{
+const Button: React.FC<ButtonProps> = ({icon, icon_color, bg_color, width, onClick, children, type}) => {
     return (
-        <StyledButton icon={icon} bg_color={bg_color} width={width}  onClick={onClick} type={type}>{children}</StyledButton>
+        <StyledButton
+            bg_color={bg_color}
+            width={width}
+            onClick={onClick}
+            type={type}
+        >
+            {icon &&
+                    <img src={icon}/>}
+            {children}
+        </StyledButton>
     );
 };
-export default Button;
+
+export default Button

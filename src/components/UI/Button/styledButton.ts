@@ -1,25 +1,36 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 
-export const StyledButton = styled.button<{ icon?: any, bg_color: string, width: string}>`
+export const StyledButton = styled.button<{ bg_color: string, width: string}>`
   z-index: 10;
-  width: ${(props) => props.width};
+  min-width: ${(props) => props.width};
   height: 45px;
   background-color: ${(props) => props.bg_color};
   border-radius: 5px;
   cursor: pointer;
   position: relative;
   transition: all .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
-  &:after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    content: ${(props) => (!props.icon ? "" : `url(${props.icon})`)};
-    width: 30%;
-    transform: translateY(-50%);
-  }
     &:hover{
         transform: scale(1.05);
+       
     }
 `;
+
+
+
+export const IconWrapper = styled.div<{ color: string }>`
+    svg {
+        fill: ${props => props.color};
+    }
+    
+    
+`;
+
+
+
+
+
