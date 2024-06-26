@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const StyledSelectFieldWrapper = styled.div`
+export const SelectFieldWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -12,7 +12,7 @@ export const StyledSelectFieldWrapper = styled.div`
     }
 `;
 
-export const Styled = styled.div`
+export const SelectField = styled.div`
     border-radius: 10px;
     width: 100%;
     color: #000;
@@ -23,7 +23,7 @@ export const Styled = styled.div`
     
 `;
 
-export const StyledSelectList = styled.ul`
+export const SelectList = styled.ul`
    display: flex;
    flex-direction: column;
 
@@ -39,7 +39,7 @@ export const StyledSelectList = styled.ul`
 `;
 
 
-export const StyledSelectListItem = styled.li<{icon: any, selected: boolean}>`
+export const SelectListItem = styled.li<{icon: any, selected: boolean}>`
     display: flex;
     align-items: center;
     gap: 20px;
@@ -54,8 +54,8 @@ export const StyledSelectListItem = styled.li<{icon: any, selected: boolean}>`
     &::before {
         content: "";
         display: block;
-        width: 25px; // или любой другой желаемый размер
-        height: 25px; // или любой другой желаемый размер
+        width: 25px; 
+        height: 25px;
         background-image: url(${({ icon }) => icon});
         background-size: contain;
         background-repeat: no-repeat;

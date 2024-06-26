@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {ChangeEventHandler, FC, useState} from 'react';
 import {
 
     RegistrationModalContent,
@@ -18,15 +18,12 @@ const Form: FC<FormProps> = ({type, handleClick})  => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault(); // Prevent the default form submission behavior
-    };
 
-    const handleEmailChange = (event) => {
+    const handleEmailChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         setEmail(event.target.value);
     };
 
-    const handlePasswordChange = (event) => {
+    const handlePasswordChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         setPassword(event.target.value);
     };
 
@@ -36,7 +33,7 @@ const Form: FC<FormProps> = ({type, handleClick})  => {
                 <RegistrationModalHeader>
                     {type === 'login' ? "Авторизация" : "Регистрация"}
                 </RegistrationModalHeader>
-                <RegistrationModalContent onSubmit={handleSubmit}>
+                <RegistrationModalContent >
                     <RegistrationInput placeholder="Почта" type="email" required onChange={handleEmailChange}/>
                     <RegistrationInput type="password" placeholder="Пароль" required minLength={8} onChange={handlePasswordChange}/>
                     <Button bgColor={"#C75E5E"} iconColor={"#000"} width={"90%"} onClick={() =>  handleClick(email, password)}>

@@ -16,7 +16,7 @@ const SearchField = () => {
         dispatch(setSearchObject({name: searchValue, point: [0,0]}))
     }
 
-    const handleChangeSearchValue = (event) => {
+    const handleChangeSearchValue = (event:  React.ChangeEvent<HTMLInputElement>) => {
        setSearchValue(event.target.value)
     };
 
