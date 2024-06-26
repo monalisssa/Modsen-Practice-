@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyledButton, IconWrapper} from "./styledButton";
+import {Styled, IconWrapper} from "./styled";
 
 
 interface ButtonProps {
     icon?: any;
     text?: string,
-    bg_color: string;
-    icon_color: string,
+    bgColor: string;
+    iconColor: string,
     width: string;
     type?: 'button' | 'submit' | 'reset';
     onClick?: () => void | ((email: string, pass: string) => void);
@@ -15,10 +15,10 @@ interface ButtonProps {
 
 
 
-const Button: React.FC<ButtonProps> = ({icon, icon_color, bg_color, width, onClick, children, type}) => {
+const Button: React.FC<ButtonProps> = ({icon, iconColor, bgColor, width, onClick, children, type}) => {
     return (
-        <StyledButton
-            bg_color={bg_color}
+        <Styled
+            bgColor={bg_color}
             width={width}
             onClick={onClick}
             type={type}
@@ -26,7 +26,7 @@ const Button: React.FC<ButtonProps> = ({icon, icon_color, bg_color, width, onCli
             {icon &&
                     <img src={icon}/>}
             {children}
-        </StyledButton>
+        </Styled>
     );
 };
 

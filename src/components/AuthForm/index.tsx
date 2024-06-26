@@ -6,9 +6,9 @@ import {
     RegistrationModal,
     RegistrationModalHeader, ModalContainer
 } from "./styled";
-import Button from "../UI/Button/Button";
-import search_icon from "../../assets/images/search_icon.svg";
+
 import {Link} from "react-router-dom";
+import Button from "../UI/Button";
 
 interface FormProps {
     type: string;
@@ -22,15 +22,14 @@ const Form: FC<FormProps> = ({type, handleClick})  => {
         event.preventDefault(); // Prevent the default form submission behavior
     };
 
-    const handlePasswordChange = (password: string) =>
-    {
-        setPassword(password)
-    }
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    };
 
-    const handleEmailChange = (email: string) =>
-    {
-        setEmail(email)
-    }
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
     return (
         <ModalContainer>
             <RegistrationModal>
@@ -38,9 +37,9 @@ const Form: FC<FormProps> = ({type, handleClick})  => {
                     {type === 'login' ? "Авторизация" : "Регистрация"}
                 </RegistrationModalHeader>
                 <RegistrationModalContent onSubmit={handleSubmit}>
-                    <RegistrationInput placeholder="Почта" type="email" required onChange={(e) => handleEmailChange(e.target.value)}/>
-                    <RegistrationInput type="password" placeholder="Пароль" required minLength={8} onChange={(e) => handlePasswordChange(e.target.value)}/>
-                    <Button bg_color={"#C75E5E"} icon_color={"#000"} width={"90%"} onClick={() =>  handleClick(email, password)}>
+                    <RegistrationInput placeholder="Почта" type="email" required onChange={handleEmailChange}/>
+                    <RegistrationInput type="password" placeholder="Пароль" required minLength={8} onChange={handlePasswordChange}/>
+                    <Button bgColor={"#C75E5E"} iconColor={"#000"} width={"90%"} onClick={() =>  handleClick(email, password)}>
                         {type === 'login' ? "Войти" : "Зарегистрироваться"}
                     </Button>
                         {type === 'login' ?

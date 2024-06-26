@@ -1,11 +1,11 @@
 import styled, {css} from "styled-components";
 
 
-export const StyledButton = styled.button<{ bg_color: string, width: string}>`
+export const Styled = styled.button<{ bgColor: string, width: string}>`
   z-index: 10;
   min-width: ${(props) => props.width};
   height: 45px;
-  background-color: ${(props) => props.bg_color};
+  background-color: ${(props) => props.bgColor};
   border-radius: 5px;
   cursor: pointer;
   position: relative;

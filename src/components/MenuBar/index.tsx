@@ -4,7 +4,7 @@ import search_icon from "../../assets/images/search_icon.svg"
 import favorites_icon from "../../assets/images/favorites_icon.svg"
 import auth_icon from "../../assets/images/auth_icon.svg"
 import SideBar from "../SideBar";
-import Button from "../UI/Button/Button";
+import Button from "../UI/Button";
 import {Link, useLocation} from "react-router-dom";
 import {GeoObject} from "../../../types";
 
@@ -21,13 +21,13 @@ const MenuBar = ({ selectedObject, setSelectedObject}: MenuBarProperties) => {
         <>
             <MenuBarContainer>
                 <MenuBarButtonsContainer>
-                    <Button icon={search_icon} onClick={() => setOpenSearchSideBar(!openSearchSideBar)} bg_color={"#5E7BC7"} width={"90%"} icon_color={"#777"}/>
-                    <Button icon={favorites_icon} onClick={() => setOpenSearchSideBar(!openSearchSideBar)} bg_color={"#C75E5E"} width={"90%"} icon_color={"#777"}/>
+                    <Button icon={search_icon} onClick={() => setOpenSearchSideBar(!openSearchSideBar)} bgColor={"#5E7BC7"} width={"90%"} iconColor={"#777"}/>
+                    <Button icon={favorites_icon} onClick={() => setOpenSearchSideBar(!openSearchSideBar)} bgColor={"#C75E5E"} width={"90%"} iconColor={"#777"}/>
                 </MenuBarButtonsContainer>
 
                 <Link to="/login">
                 <Button icon={auth_icon}
-                        bg_color={"#808080"} width={"90%"} icon_color={"#777"}/>
+                       bgColor={"#808080"} width={"90%"} iconColor={"#777"}/>
                 </Link>
             </MenuBarContainer>
             {

@@ -46,7 +46,7 @@ const CategoriesSelectField = () => {
                 <StyledSelectList>
                     {
                         filterCategories.map((el,index) =>
-                            <StyledSelectListItem icon={el.url} selected={el.isSelected} onClick={() => handleClick(index)}>
+                            <StyledSelectListItem icon={el.url} selected={el.isSelected} onClick={handleClick}>
                                 {el.name}
                             </StyledSelectListItem>
                         )

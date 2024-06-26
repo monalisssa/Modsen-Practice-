@@ -1,6 +1,5 @@
 import React from 'react';
 import {DrawerWrapper} from "./styled";
-import Button from "../UI/Button/Button";
 import search_icon from "../../assets/images/search_icon.svg"
 import SearchField from "./SearchBar";
 import CategoriesSelectField from "./CategoriesSelect";
@@ -9,6 +8,7 @@ import {fetchGeoObjects} from "../../store/actions/geoObjectsActions";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import InfoCard from "./InfoCard";
 import {GeoObject} from "../../../types";
+import Button from "../UI/Button";
 
 
 interface SearchSidebarProperties {
@@ -45,7 +45,7 @@ const SideBar = ({ open, selectedObject, setSelectedObject }: SearchSidebarPrope
                 <>
                     <CategoriesSelectField />
                     <RadiusField />
-                    <Button icon={search_icon} onClick={handleLoadGeoObjects} bg_color={"#5E7BC7"} width={"100%"} icon_color={"#777"}/>
+                    <Button icon={search_icon} onClick={handleLoadGeoObjects} bgColor={"#5E7BC7"} width={"100%"} iconColor={"#777"}/>
                 </>
                 }
 

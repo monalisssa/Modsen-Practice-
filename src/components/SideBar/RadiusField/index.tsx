@@ -15,18 +15,21 @@ const RadiusField = () => {
         dispatch(setRadius(radiusValue))
     }, [radiusValue])
 
+    const handleRadiusChange = (event) => {
+        setRadius(event.target.value);
+    };
+
+
     return (
         <>
             <StyledInputRadiusFieldWrapper>
-
                 <h2>В радиусе:</h2>
                 <div>
-                    <StyledInput type="number" min={1} max={2000} onChange={(e) => setRadiusValue(Number(e.target.value))} value={radiusValue}/>
+                    <StyledInput type="number" min={1} max={2000} onChange={handleRadiusChange} value={radiusValue}/>
                     <StyledInputRadiusText>м</StyledInputRadiusText>
                 </div>
             </StyledInputRadiusFieldWrapper>
         </>
-
     );
 };
 

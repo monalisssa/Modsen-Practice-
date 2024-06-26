@@ -15,11 +15,17 @@ const SearchField = () => {
     {
         dispatch(setSearchObject({name: searchValue, point: [0,0]}))
     }
+
+    const handleChangeSearchValue = (event) => {
+       setSearchValue(event.target.value)
+    };
+
+
     return (
         <SearchInputWrapper>
             <img src={search_icon} onClick={handleSearchValues}/>
             <SearchInput icon={search_icon}
-                         onChange={(e) => setSearchValue(e.target.value)} placeholder="Место, адрес..."/>
+                         onChange={handleChangeSearchValue} placeholder="Место, адрес..."/>
 
         </SearchInputWrapper>
 
