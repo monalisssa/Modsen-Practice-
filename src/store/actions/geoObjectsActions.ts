@@ -9,7 +9,6 @@ export const fetchGeoObjects = (coordinates: { lat: number; lng: number }, radiu
        try {
             dispatch(geoObjectsSlice.actions.geoObjectsFetching())
             const response = await searchObjects(coordinates, radius, filters);
-            console.log(response)
             dispatch(geoObjectsSlice.actions.geoObjectsFetchingSuccess(response))
        } catch (e) {
            dispatch(geoObjectsSlice.actions.geoObjectsFetchingError(e.message))

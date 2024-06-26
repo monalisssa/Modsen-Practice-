@@ -3,7 +3,7 @@ import {IFilterIcon} from "../../constants/arrayFilterCategories";
 
 
 interface GeoObjectsState {
-    geo_objects: any;
+    items: any;
     isLoading: boolean;
     error: string;
     searchObject: {
@@ -15,7 +15,7 @@ interface GeoObjectsState {
 }
 
 const initialState: GeoObjectsState = {
-    geo_objects: [],
+    items: [],
     isLoading: false,
     error: '',
     searchObject: {
@@ -45,7 +45,7 @@ export const geoObjectsSlice = createSlice({
         geoObjectsFetchingSuccess(state, action: PayloadAction<any>) {
             state.isLoading = false;
             state.error = '';
-            state.geo_objects = action.payload;
+            state.items = action.payload;
         },
         geoObjectsFetchingError(state, action: PayloadAction<string>) {
             state.isLoading = false;
