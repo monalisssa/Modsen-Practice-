@@ -1,0 +1,18 @@
+body {
+  display: flex;
+  justify-content: center;
+  margin: 80px;
+
+}
+
+h2{
+  text-align: center;
+}
+input{
+  margin-bottom: 10px;
+}
+.item-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
