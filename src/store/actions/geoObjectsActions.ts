@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {searchObjects} from "../../utils/api/searchObjects";
+import {searchObjects} from "../../api/searchObjects";
 import {AppDispatch} from "../index";
 import {geoObjectsSlice, setSearchObject} from "../reducers/geoObjectsSlice";
 

@@ -27,7 +27,7 @@ const circleOptions = {
 
 
 
-const MapComponent = ({ selectObject }: MapComponentProps) => {
+const MapComponent = () => {
 
      const {location: userLocation, location_error, refresh} = useGeoLocation()
      const geoObjects = useAppSelector(state => state.geoObjectsReducer)
@@ -115,7 +115,6 @@ const MapComponent = ({ selectObject }: MapComponentProps) => {
                                 key={object.id}
                                 geometry={[object.point.lat, object.point.lon]}
                                 options={getPlacemarkOptions(object, geoObjects)}
-                                onClick={() => selectObject(object)}
                             />
                         ))}
 

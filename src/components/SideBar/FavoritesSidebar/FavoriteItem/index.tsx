@@ -10,13 +10,18 @@ import {
     FavoriteImageDescription
 } from "./styled";
 import test from "../../../../assets/images/test.png"
-import {InfoCardButtons} from "../../SearchSideBar/InfoCard/styled";
+
 import {GeoObject} from "../../../../../types";
 
 
-const FavoriteItem = ({item, onClick}: { item: GeoObject, onClick?: () => void }) => {
+const FavoriteItem = ({item, selectItem}: { item: GeoObject, selectItem: (item: GeoObject) => void }) => {
+
+    const handleSelectItem = () => {
+        selectItem(item);
+    };
+
     return (
-        <FavoriteCardWrapper onClick = {onClick}>
+        <FavoriteCardWrapper onClick = {handleSelectItem}>
             <FavoriteCardHeader>
                 <FavoriteImageBox>
                     <img src={item.external_content[0].main_photo_url}/>
