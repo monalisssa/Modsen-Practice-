@@ -1,42 +1,79 @@
-import React, {ChangeEventHandler, FC, useState} from 'react';
+import React, {ChangeEventHandler, FC, FormEvent, useState} from 'react';
 import {
 
-    RegistrationModalContent,
-    RegistrationInput,
-    RegistrationModal,
-    RegistrationModalHeader, ModalContainer
+    ModalContent,
+    InputField,
+    Modal,
+    ModalHeader, ModalContainer, InputBox
 } from "./styled";
 
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Button from "../UI/Button";
-
-interface FormProps {
-    type: string;
-    handleClick: (email: string, pass: string) => void;
-}
-const Form: FC<FormProps> = ({type, handleClick})  => {
-    const [password, setPassword] = useState('')
-    const [email, setEmail] = useState('')
+import {useFormik} from "formik";
+import {basicSchema, FormProps, FormValues} from "./types";
 
 
-    const handleEmailChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-        setEmail(event.target.value);
-    };
+const Form: FC<FormProps> = ({type, handleSubmitForm})  => {
+    const navigate = useNavigate()
+    const {values,
+        errors,
+        touched,
+        handleBlur,
+        handleChange,
+        handleSubmit} = useFormik<FormValues>({
+          initialValues: {
+              email: "",
+              password: ""
+          },
+          validationSchema: basicSchema,
+          onSubmit: (values) => {
+              handleSubmitForm(values.email, values.password);
+          },
+    })
 
-    const handlePasswordChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-        setPassword(event.target.value);
-    };
+    console.log(errors);
+
+    const handleCloseModal = (event: React.MouseEvent<HTMLDivElement>) =>
+    {
+        if (event.target === event.currentTarget) {
+            navigate('/');
+        }
+    }
 
     return (
-        <ModalContainer>
-            <RegistrationModal>
-                <RegistrationModalHeader>
+        <ModalContainer onClick={handleCloseModal}>
+            <Modal >
+                <ModalHeader>
                     {type === 'login' ? "Авторизация" : "Регистрация"}
-                </RegistrationModalHeader>
-                <RegistrationModalContent >
-                    <RegistrationInput placeholder="Почта" type="email" required onChange={handleEmailChange}/>
-                    <RegistrationInput type="password" placeholder="Пароль" required minLength={8} onChange={handlePasswordChange}/>
-                    <Button bgColor={"#C75E5E"} iconColor={"#000"} width={"90%"} onClick={() =>  handleClick(email, password)}>
+                </ModalHeader>
+                <ModalContent onSubmit={handleSubmit}>
+
+                    <InputBox>
+                        <InputField
+                            id="email"
+                            placeholder="Почта"
+                            onChange={handleChange}
+                            value={values.email}
+                            onBlur={handleBlur}
+                            isError={errors.email && touched.email}
+                        />
+                        {errors.email && touched.email && <p>{errors.email}</p>}
+                    </InputBox>
+
+                    <InputBox>
+                        <InputField
+                            id="password"
+                            type="password"
+                            placeholder="Пароль"
+                            onChange={handleChange}
+                            value={values.password}
+                            onBlur={handleBlur}
+                            isError={errors.password && touched.password}
+                        />
+                        {errors.password && touched.password && <p>{errors.password}</p>}
+                    </InputBox>
+
+                    <Button bgColor={"#C75E5E"} iconColor={"#000"} width={"90%"} type="submit">
                         {type === 'login' ? "Войти" : "Зарегистрироваться"}
                     </Button>
                         {type === 'login' ?
@@ -50,8 +87,8 @@ const Form: FC<FormProps> = ({type, handleClick})  => {
                                 <Link to={'/login'}> Авторизация!</Link>
                             </h4>
                         }
-                </RegistrationModalContent>
-            </RegistrationModal>
+                </ModalContent>
+            </Modal>
         </ModalContainer>
 
     );

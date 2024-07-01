@@ -1,10 +1,11 @@
 import styled, {keyframes} from "styled-components";
 
 interface RegistrationInputProps {
-    type: string;
+    type?: string;
     placeholder: string;
     required?: boolean;
     minLength?: number;
+    isError: boolean
 }
 
 const slideIn = keyframes`
@@ -24,7 +25,7 @@ export const ModalContainer =  styled.div`
     background-color: rgb(0,0,0,.7);
     
 `;
-export const RegistrationModal = styled.div`
+export const Modal = styled.div`
     position: absolute;
     top: 20%;
     left:50%;
@@ -51,7 +52,7 @@ export const RegistrationModal = styled.div`
 
 `;
 
-export const RegistrationModalHeader = styled.div`
+export const ModalHeader = styled.div`
     background-color: #000;
     padding: 20px;
     text-align: center;
@@ -60,25 +61,41 @@ export const RegistrationModalHeader = styled.div`
     border-radius: 10px 10px 0 0;
     
 `;
-export const RegistrationModalContent = styled.form`
+
+export const ModalContent = styled.form`
     margin-top: 20px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px
+    gap: 20px;
+   
+
+`;
+
+export const InputBox = styled.div`
+
+    display: flex;
+    flex-direction: column;
+   
+    width: 90%;
+    
+    & p {
+    color: #fc8181;
+    font-size: 0.75rem;
+    text-align: left;
+    margin-top: 0.25rem;
+}
 `;
 
 
-export const RegistrationInput = styled.input<RegistrationInputProps>`
+export const InputField = styled.input<RegistrationInputProps>`
     border-radius: 5px;
-    width: 90%;
+    width: 100%;
     color: #000;
-    border: 3px solid #C4C4C4;
+    border-style:solid;
+    border-width: 3px;
     padding: 5px 20px 5px 20px;
-
-    &[type="password"] {
-        min-length: ${(props) => props.minLength || 0};
-    }
+    border-color: ${(props) => (props.isError ? '#fc8181' : '#C4C4C4')};;
 `;

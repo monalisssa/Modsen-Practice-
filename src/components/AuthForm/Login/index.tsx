@@ -4,10 +4,12 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Form from "../index";
 import {useAppDispatch} from "../../../hooks/redux";
 import {setUser} from "../../../store/reducers/userSlice";
+import {useNavigate} from "react-router-dom";
 
 
 const Login = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate()
     const handleLogin = (email: string, password: string) => {
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
@@ -17,6 +19,7 @@ const Login = () => {
                     id: user.uid,
                     token: user.refreshToken,
                 }));
+                navigate('/')
             })
             .catch(() => alert('Invalid user!'))
     }
@@ -24,7 +27,7 @@ const Login = () => {
     return (
         <Form
             type="login"
-            handleClick={handleLogin}
+            handleSubmitForm={handleLogin}
         />
     )
 }

@@ -3,10 +3,12 @@ import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import {useAppDispatch} from "../../../hooks/redux";
 import Form from "../index";
 import {setUser} from "../../../store/reducers/userSlice";
+import {useNavigate} from "react-router-dom";
 
 
 const Register = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate()
     const handleRegister = (email: string, password: string) => {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
@@ -17,6 +19,7 @@ const Register = () => {
                     id: user.uid,
                     token: user.refreshToken,
                 }));
+                navigate('/')
             })
             .catch(console.error)
     }
@@ -24,7 +27,7 @@ const Register = () => {
     return (
         <Form
             type="register"
-            handleClick={handleRegister}
+            handleSubmitForm={handleRegister}
         />
     )
 }
