@@ -1,29 +1,19 @@
 import React, {useEffect} from 'react';
-import {Styled, StyledSelectFieldWrapper, StyledSelectList, StyledSelectListItem} from "./styled";
 import {arrayCategories} from "../../../constants/arrayCategories";
 import {useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {setFilters} from "../../../store/reducers/geoObjectsSlice";
+import {SelectFieldWrapper, SelectList, SelectListItem, SelectField} from "./styled";
 
-const CategoriesSelectField = () => {
+const CategoriesSelect = () => {
     const [filterCategories, setFilterCategories] = useState([]);
     const dispatch = useAppDispatch()
     const geoObjects = useAppSelector((state) => state.geoObjectsReducer);
 
     useEffect(() => {
-        if (geoObjects.filters && geoObjects.filters.length > 0) {
-            setFilterCategories(
-                filterCategories.map((el) => ({
-                    ...el,
-                    isSelected: geoObjects.filters.some((filter) =>
-                        filter.categories.some((filterId) => el.categories.includes(filterId))
-                    ),
-                }))
-            );
-        } else {
-            setFilterCategories(filterCategories);
-        }
-    }, [geoObjects.items]);
+
+        setFilterCategories(Array.from(new Set([...geoObjects.filters, ...arrayCategories.filter(el => !geoObjects.filters.find(x => x.name===el.name))])));
+    }, []);
 
     const handleClick = (index: number) => {
         setFilterCategories(
@@ -40,22 +30,22 @@ const CategoriesSelectField = () => {
     }, [filterCategories])
 
     return (
-        <StyledSelectFieldWrapper>
+        <SelectFieldWrapper>
             <h2>Искать:</h2>
-            <Styled>
-                <StyledSelectList>
+            <SelectField>
+                <SelectList>
                     {
                         filterCategories.map((el,index) =>
-                            <StyledSelectListItem icon={el.url} selected={el.isSelected} onClick={handleClick}>
+                            <SelectListItem icon={el.url} selected={el.isSelected} onClick={() => handleClick(index)}>
                                 {el.name}
-                            </StyledSelectListItem>
+                            </SelectListItem>
                         )
                     }
-                </StyledSelectList>
-            </Styled>
-        </StyledSelectFieldWrapper>
+                </SelectList>
+            </SelectField>
+        </SelectFieldWrapper>
 
     );
 };
 
-export default CategoriesSelectField;
+export default CategoriesSelect;

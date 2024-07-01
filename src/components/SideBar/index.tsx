@@ -2,7 +2,7 @@ import React from 'react';
 import {DrawerWrapper} from "./styled";
 import search_icon from "../../assets/images/search_icon.svg"
 import SearchField from "./SearchBar";
-import CategoriesSelectField from "./CategoriesSelect";
+import CategoriesSelect from "./CategoriesSelect";
 import RadiusField from "./RadiusField";
 import {fetchGeoObjects} from "../../store/actions/geoObjectsActions";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
@@ -43,7 +43,7 @@ const SideBar = ({ open, selectedObject, setSelectedObject }: SearchSidebarPrope
 
                 :
                 <>
-                    <CategoriesSelectField />
+                    <CategoriesSelect/>
                     <RadiusField />
                     <Button icon={search_icon} onClick={handleLoadGeoObjects} bgColor={"#5E7BC7"} width={"100%"} iconColor={"#777"}/>
                 </>
