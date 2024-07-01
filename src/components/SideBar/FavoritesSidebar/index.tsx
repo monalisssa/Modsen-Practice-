@@ -8,6 +8,8 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {getDatabase, ref,  onValue} from "firebase/database";
 import {setFavorites} from "../../../store/reducers/userSlice";
 import InfoCard from "./InfoCard";
+import {addToFavorites, getFavoriteItems} from "../../../api/firebaseFavoritesApi";
+import Loading from "../../UI/Loading";
 
 
 interface FavoritesSidebarProperties {
@@ -18,32 +20,25 @@ const FavoritesSidebar = ({ open, }: FavoritesSidebarProperties ) => {
     const [selectedObject, setSelectedObject] = useState<GeoObject>(null)
     const user = useAppSelector((state) => state.userReducer);
     const dispatch = useAppDispatch()
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
         if(user.isAuth) {
-            getFavoritesFromDatabase()
+            getFavoriteItems(user.id)
+                .then( data =>
+                {
+                    setLoading(false)
+                    dispatch(setFavorites(data))
+                })
+                .catch(e => console.log(e.message()))
         }
+        else setTimeout(() => setLoading(false), 1000)
     }, [user.isAuth]);
 
-    const handleReturnSearch = () => {
-        setSelectedObject(null)
+    const handleSetSelectedItem = (item: GeoObject | null) => {
+        setSelectedObject(item)
     };
-
-    const getFavoritesFromDatabase = () => {
-        const database = getDatabase();
-        const favoritesRef = ref(database, 'favorites/' + user.id);
-
-        onValue(favoritesRef, (snapshot: { val: () => any; }) => {
-            const favoritesData = snapshot.val();
-            if (favoritesData && favoritesData.items) {
-                const favoriteItems = favoritesData.items;
-                dispatch(setFavorites(favoriteItems));
-            }
-        }, (error: any) => {
-            console.error('Ошибка при получении данных из базы данных:', error);
-        });
-    };
-
 
         return (
             <DrawerWrapper open={open}>
@@ -51,18 +46,22 @@ const FavoritesSidebar = ({ open, }: FavoritesSidebarProperties ) => {
                 {
                     selectedObject ?
                     <>
-                        <h3 onClick={handleReturnSearch}>&#9668; Избранные</h3>
-                        <InfoCard selectedObject={selectedObject}/>
+                        <h3 onClick={() => handleSetSelectedItem(null)}>&#9668; Избранные</h3>
+                        <InfoCard selectedObject={selectedObject} setSelectedItem={handleSetSelectedItem}/>
                     </>
 
                     :
                         <FavoriteItemList>
                             <h3>Избранное:</h3>
+
                             {
-                                user.favorites.length > 0 &&
-                                user.favorites.map(item =>
-                                    <FavoriteItem item = {item} onClick={() => setSelectedObject(item)}/>
-                                )
+                                loading ? <Loading />
+                                    :
+                                    user.favorites.length > 0 ?
+                                    user.favorites.map(item =>
+                                        <FavoriteItem item = {item} selectItem={handleSetSelectedItem}/>
+                                    )
+                                        : <p>Нет ни одного избранного места!</p>
 
                             }
                         </FavoriteItemList>

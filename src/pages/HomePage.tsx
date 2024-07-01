@@ -7,22 +7,14 @@ import {API_KEY, SUGGEST_API_KEY} from "../constants/apiKeys";
 
 
 const HomePage = () => {
-
-    const [selectedObject, setSelectedObject] = useState<GeoObject>(null)
-
-    const handleSetSelectedObject = (item: GeoObject) =>
-    {
-        setSelectedObject(item)
-    }
-
     return (
        <>
-           <MenuBar selectedObject = {selectedObject} setSelectedObject={setSelectedObject}/>
+           <MenuBar/>
            <YMaps query={{
                apikey: API_KEY,
                suggest_apikey: SUGGEST_API_KEY
            }}>
-               <MapComponent selectObject={handleSetSelectedObject}/>
+               <MapComponent/>
            </YMaps>
 
 

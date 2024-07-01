@@ -1,9 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
 import geoObjectsSlice from "./reducers/geoObjectsSlice";
 import {combineReducers} from "@reduxjs/toolkit";
+import userSlice from "./reducers/userSlice";
 
 const rootReducer = combineReducers({
-    geoObjectsReducer: geoObjectsSlice
+    geoObjectsReducer: geoObjectsSlice,
+    userReducer: userSlice
 });
 
 
