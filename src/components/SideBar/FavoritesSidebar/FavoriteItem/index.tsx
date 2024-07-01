@@ -9,7 +9,7 @@ import {
     FavoriteImageBox,
     FavoriteImageDescription
 } from "./styled";
-import test from "../../../../assets/images/test.png"
+
 
 import {GeoObject} from "../../../../../types";
 

@@ -35,6 +35,16 @@ export const DrawerWrapper = styled.div<{open: boolean}>`
     flex-direction: column;
     gap:20px;
     
+    & h3{
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+
+
+    
+   
+    
 `;
 
 
