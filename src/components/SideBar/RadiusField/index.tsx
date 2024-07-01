@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyledInput, StyledInputRadiusFieldWrapper, StyledInputRadiusText} from "./styled";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {setRadius} from "../../../store/reducers/geoObjectsSlice";
@@ -15,10 +15,11 @@ const RadiusField = () => {
         dispatch(setRadius(radiusValue))
     }, [radiusValue])
 
-
-    const handleRadiusChange : ChangeEventHandler<HTMLInputElement> = (event) => {
-        setRadius(Number(event.target.value));
+    const handleRadiusChange = (event) => {
+        setRadius(event.target.value);
     };
+
+
     return (
         <>
             <StyledInputRadiusFieldWrapper>

@@ -55,7 +55,7 @@ const MapComponent = ({ selectObject }: MapComponentProps) => {
     const getPlacemarkOptions = (object: GeoObject, geoObjects: any) => {
         const matchingCategory = geoObjects.filters.find((category: any) =>
             object.rubrics.some((rubric: any) =>
-                category.categories.includes(Number(rubric.id))
+                category.category_id.includes(Number(rubric.id))
             )
         );
         return {

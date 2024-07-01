@@ -18,7 +18,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({icon, iconColor, bgColor, width, onClick, children, type}) => {
     return (
         <Styled
-            bgColor={bgColor}
+            bgColor={bg_color}
             width={width}
             onClick={onClick}
             type={type}
