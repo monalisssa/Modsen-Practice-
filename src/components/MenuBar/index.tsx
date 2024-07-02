@@ -5,9 +5,9 @@ import favorites_icon from "../../assets/images/favorites_icon.svg"
 import auth_icon from "../../assets/images/auth_icon.svg"
 import Button from "../UI/Button";
 import {Link, useLocation} from "react-router-dom";
-import {GeoObject} from "../../../types";
-import SearchSidebar from "../SideBar/SearchSideBar";
-import FavoritesSidebar from "../SideBar/FavoritesSidebar";
+import {GeoObject} from "../../types/name";
+import SearchSidebar from "../SearchSidebar";
+import FavoritesSidebar from "../FavoritesSidebar";
 
 
 const MenuBar = () => {

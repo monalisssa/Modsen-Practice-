@@ -1,6 +1,5 @@
 import React, {ChangeEventHandler, FC, FormEvent, useState} from 'react';
 import {
-
     ModalContent,
     InputField,
     Modal,

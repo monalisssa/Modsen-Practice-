@@ -1,8 +1,8 @@
 
 import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
-import {useAppDispatch} from "../../../hooks/redux";
-import Form from "../index";
-import {setUser} from "../../../store/reducers/userSlice";
+import {useAppDispatch} from "../../hooks/redux";
+import Form from "../AuthForm";
+import {setUser} from "../../store/reducers/userSlice";
 import {useNavigate} from "react-router-dom";
 
 
@@ -13,7 +13,6 @@ const Register = () => {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
-                console.log(user);
                 dispatch(setUser({
                     email: user.email,
                     id: user.uid,

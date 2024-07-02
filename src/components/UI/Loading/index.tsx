@@ -4,7 +4,6 @@ import {StyledLoading} from "./styled";
 const Loading = () => {
     return (
         <StyledLoading />
-
     );
 };
 

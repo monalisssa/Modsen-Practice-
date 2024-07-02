@@ -1,5 +1,5 @@
 import { database } from "../firebase";
-import { GeoObject } from "../../types";
+import { GeoObject } from "../types/name";
 import {get, ref, runTransaction, update} from "firebase/database";
 
 export const removeFromFavorites = async (favorites: GeoObject[], userId: string, itemId: string) => {

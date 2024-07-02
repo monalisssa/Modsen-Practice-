@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IFilterIcon} from "../../constants/arrayCategories";
-import {GeoObject} from "../../../types";
+import {GeoObject} from "../../types/name";
 
 
 interface UserState {
