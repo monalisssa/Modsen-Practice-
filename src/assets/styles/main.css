@@ -5,3 +5,10 @@
 body{
     font-family: Mont, sans-serif;
 }
+
+.balloon-card {
+    width: 300px;
+    height: 200px;
+    background-color: #fff;
+}
+

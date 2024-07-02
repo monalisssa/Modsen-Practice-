@@ -18,6 +18,18 @@ export const Styled = styled.button<{ bgColor: string, width: string}>`
         transform: scale(1.05);
        
     }
+
+    &[type="button"]
+    {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        
+        img{
+            width: 15px;
+        }
+    }
 `;
 
 
@@ -26,7 +38,6 @@ export const IconWrapper = styled.div<{ color: string }>`
     svg {
         fill: ${props => props.color};
     }
-    
     
 `;
 
