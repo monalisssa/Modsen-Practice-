@@ -18,26 +18,11 @@ import {addToFavorites, removeFromFavorites} from "../../../../api/firebaseFavor
 import Loading from "../../../UI/Loading";
 
 
-const InfoCard = ({ selectedObject, setSelectedItem }: { selectedObject: GeoObject, setSelectedItem: (item: GeoObject) => void }) => {
+const SelectedItemCard = ({ selectedObject, setSelectedItem }: { selectedObject: GeoObject, setSelectedItem: (item: GeoObject) => void }) => {
 
     const user = useAppSelector((state) => state.userReducer);
     const dispatch = useAppDispatch()
-    const [isFavorite, setIsFavorite] = useState(false)
     const [loading, setLoading] = useState(false)
-
-    useEffect(() => {
-
-        setLoading(true)
-        setTimeout(() =>
-            {
-                if (user.favorites.find(item => selectedObject.id === item.id)) setIsFavorite(true)
-                else setIsFavorite(false)
-                setLoading(false)
-            }
-        , 500)
-
-    }, [user.favorites]);
-
 
     const handleRemoveFromFavorites = () => {
         setLoading(true)
@@ -47,17 +32,6 @@ const InfoCard = ({ selectedObject, setSelectedItem }: { selectedObject: GeoObje
                 setLoading(false)
                 dispatch(setFavorites(data))
                 setSelectedItem(null)
-            })
-            .catch(e => console.log(e.message()))
-    };
-
-    const handleAddToFavorites = () => {
-        setLoading(true)
-        addToFavorites(user.id, selectedObject)
-            .then( data =>
-            {
-                setLoading(false)
-                dispatch(setFavorites(data))
             })
             .catch(e => console.log(e.message()))
     };
@@ -88,10 +62,7 @@ const InfoCard = ({ selectedObject, setSelectedItem }: { selectedObject: GeoObje
                         </InfoCardDescription>
 
                         <InfoCardButtons>
-                            {
-                                !isFavorite ? <Button bgColor={"#C75E5E"} iconColor={"#fff"} width={"45%"} icon={favorites} type="button" onClick={handleAddToFavorites}>В избранное</Button>
-                                    :  <Button bgColor={"transparent"} iconColor={"#fff"} width={"45%"} icon={favorites_1} type="reset" onClick={handleRemoveFromFavorites}>Сохранено</Button>
-                            }
+                            <Button bgColor={"transparent"} iconColor={"#fff"} width={"45%"} icon={favorites_1} type="reset" onClick={handleRemoveFromFavorites}>Сохранено</Button>
                             <Button bgColor={"#5E7BC7"} iconColor={"#fff"} width={"45%"} type="button" icon={geolocation} >Маршрут</Button>
                         </InfoCardButtons>
                     </InfoCardContent>
@@ -102,4 +73,4 @@ const InfoCard = ({ selectedObject, setSelectedItem }: { selectedObject: GeoObje
 
 };
 
-export default InfoCard;
+export default SelectedItemCard;

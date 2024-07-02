@@ -12,6 +12,6 @@ export interface IFilterIcon {
 
 export const arrayCategories: IFilterIcon[] = [
     {url: foodIcon, name: "Еда", categories: [159, 164], isSelected: false},
-    {url: cultureIcon, name: "Культура", categories: [142], isSelected: false},
+    {url: cultureIcon, name: "Культура", categories: [142, 13787], isSelected: false},
     {url: coffeeIcon, name: "Кафе", categories: [161], isSelected: false}
 ]

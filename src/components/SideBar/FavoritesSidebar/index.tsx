@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {DrawerWrapper} from "../SearchSideBar/styled";
 import SearchField from "../SearchSideBar/SearchBar";
 import {GeoObject} from "../../../../types";
-import FavoriteItem from "./FavoriteItem";
+import ItemCard from "./ItemCard";
 import {FavoriteItemList} from "./styled";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {getDatabase, ref,  onValue} from "firebase/database";
 import {setFavorites} from "../../../store/reducers/userSlice";
-import InfoCard from "./InfoCard";
+import SelectedItemCard from "./SelectedItemCard";
 import {addToFavorites, getFavoriteItems} from "../../../api/firebaseFavoritesApi";
 import Loading from "../../UI/Loading";
 
@@ -47,7 +47,7 @@ const FavoritesSidebar = ({ open, }: FavoritesSidebarProperties ) => {
                     selectedObject ?
                     <>
                         <h3 onClick={() => handleSetSelectedItem(null)}>&#9668; Избранные</h3>
-                        <InfoCard selectedObject={selectedObject} setSelectedItem={handleSetSelectedItem}/>
+                        <SelectedItemCard selectedObject={selectedObject} setSelectedItem={handleSetSelectedItem}/>
                     </>
 
                     :
@@ -59,7 +59,7 @@ const FavoritesSidebar = ({ open, }: FavoritesSidebarProperties ) => {
                                     :
                                     user.favorites.length > 0 ?
                                     user.favorites.map(item =>
-                                        <FavoriteItem item = {item} selectItem={handleSetSelectedItem}/>
+                                        <ItemCard item = {item} selectItem={handleSetSelectedItem}/>
                                     )
                                         : <p>Нет ни одного избранного места!</p>
 
