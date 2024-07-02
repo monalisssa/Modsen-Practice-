@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const InfoCardWrapper = styled.div`
-   
     min-height: 60%;
     width: 100%;
     border-radius: 10px;
@@ -10,8 +9,6 @@ export const InfoCardWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap:10px;
-   
-    
 `;
 
 export const InfoCardImageBox= styled.div`
@@ -55,11 +52,14 @@ export const InfoCardDescription = styled.div`
         line-height: 25px;
     }
     & p{
-        font-size: 14px;
+        font-size: 13px;
         line-height: 12px;
         color: #373737;
         text-align: justify;
         margin-top: 10px;
+    }
+    & b{
+        font-size: 14px;
     }
 `;
 

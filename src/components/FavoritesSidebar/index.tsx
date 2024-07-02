@@ -1,21 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {DrawerWrapper} from "../SearchSideBar/styled";
-import SearchField from "../SearchSideBar/SearchBar";
-import {GeoObject} from "../../../../types";
-import ItemCard from "./ItemCard";
+import {DrawerWrapper} from "../SearchSidebar/styled";
+import SearchField from "../SearchField";
+import {GeoObject} from "../../types/name";
+import GeoObjectCard from "../GeoObjectCard";
 import {FavoriteItemList} from "./styled";
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {getDatabase, ref,  onValue} from "firebase/database";
-import {setFavorites} from "../../../store/reducers/userSlice";
-import SelectedItemCard from "./SelectedItemCard";
-import {addToFavorites, getFavoriteItems} from "../../../api/firebaseFavoritesApi";
-import Loading from "../../UI/Loading";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {setFavorites} from "../../store/reducers/userSlice";
+import SelectedItemCard from "../SelectedItemCard";
+import {getFavoriteItems} from "../../api/firebaseFavoritesApi";
+import Loading from "../UI/Loading";
+import {FavoritesSidebarProperties} from "./types";
 
 
-interface FavoritesSidebarProperties {
-    open: boolean;
-}
-const FavoritesSidebar = ({ open, }: FavoritesSidebarProperties ) => {
+
+const FavoritesSidebar: React.FC<FavoritesSidebarProperties> = ({open }) => {
 
     const [selectedObject, setSelectedObject] = useState<GeoObject>(null)
     const user = useAppSelector((state) => state.userReducer);
@@ -28,8 +26,8 @@ const FavoritesSidebar = ({ open, }: FavoritesSidebarProperties ) => {
             getFavoriteItems(user.id)
                 .then( data =>
                 {
-                    setLoading(false)
                     dispatch(setFavorites(data))
+                    setLoading(false)
                 })
                 .catch(e => console.log(e.message()))
         }
@@ -47,19 +45,18 @@ const FavoritesSidebar = ({ open, }: FavoritesSidebarProperties ) => {
                     selectedObject ?
                     <>
                         <h3 onClick={() => handleSetSelectedItem(null)}>&#9668; Избранные</h3>
-                        <SelectedItemCard selectedObject={selectedObject} setSelectedItem={handleSetSelectedItem}/>
+                        <SelectedItemCard selectedItem={selectedObject} setSelectedItem={handleSetSelectedItem}/>
                     </>
 
                     :
                         <FavoriteItemList>
                             <h3>Избранное:</h3>
-
                             {
                                 loading ? <Loading />
                                     :
                                     user.favorites.length > 0 ?
                                     user.favorites.map(item =>
-                                        <ItemCard item = {item} selectItem={handleSetSelectedItem}/>
+                                        <GeoObjectCard item = {item} selectItem={handleSetSelectedItem}/>
                                     )
                                         : <p>Нет ни одного избранного места!</p>
 

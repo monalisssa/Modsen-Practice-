@@ -1,7 +1,7 @@
 import React, {ChangeEventHandler, useEffect, useState} from 'react';
 import {StyledInput, StyledInputRadiusFieldWrapper, StyledInputRadiusText} from "./styled";
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {setRadius} from "../../../store/reducers/geoObjectsSlice";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {setRadius} from "../../store/reducers/geoObjectsSlice";
 import 'react-dadata/dist/react-dadata.css';
 
 

@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import {arrayCategories} from "../../../../constants/arrayCategories";
+import {arrayCategories} from "../../constants/arrayCategories";
 import {useState} from "react";
-import {useAppDispatch, useAppSelector} from "../../../../hooks/redux";
-import {setFilters} from "../../../../store/reducers/geoObjectsSlice";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {setFilters} from "../../store/reducers/geoObjectsSlice";
 import {SelectFieldWrapper, SelectList, SelectListItem, SelectField} from "./styled";
 
 const CategoriesSelect = () => {

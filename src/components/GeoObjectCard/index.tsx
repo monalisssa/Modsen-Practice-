@@ -1,7 +1,7 @@
 import React from 'react';
 
-import favorites from "../../../../assets/images/favorites_icon_2.svg";
-import geolocation from "../../../../assets/images/geolocation_icon.png";
+import favorites from "../../assets/images/favorites_icon_2.svg";
+import geolocation from "../../assets/images/geolocation_icon.png";
 import {
     ItemCardButtons,
     ItemCardHeader,
@@ -11,10 +11,12 @@ import {
 } from "./styled";
 
 
-import {GeoObject} from "../../../../../types";
+import {GeoObject} from "../../types/name";
+import {FavoritesSidebarProperties} from "../FavoritesSidebar/types";
+import {GeoObjectCardProps} from "./types";
 
 
-const ItemCard = ({item, selectItem, mapBalloon}: { item: GeoObject, selectItem?: (item: GeoObject) => void, mapBalloon?: boolean }) => {
+const GeoObjectCard: React.FC<GeoObjectCardProps> = ({item, selectItem, mapBalloon }) => {
 
     const handleSelectItem = () => {
         if(!mapBalloon) selectItem(item);
@@ -46,4 +48,4 @@ const ItemCard = ({item, selectItem, mapBalloon}: { item: GeoObject, selectItem?
     );
 };
 
-export default ItemCard;
+export default GeoObjectCard;

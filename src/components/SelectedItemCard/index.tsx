@@ -7,18 +7,17 @@ import {
     InfoCardImageBox,
     InfoCardWrapper
 } from "./styled";
-import favorites from "../../../../assets/images/favorites_icon.svg"
-import favorites_1 from "../../../../assets/images/favorites.svg"
-import geolocation from "../../../../assets/images/geolocation_icon.png"
-import {GeoObject} from "../../../../../types";
-import Button from "../../../UI/Button";
-import {useAppDispatch, useAppSelector} from "../../../../hooks/redux";
-import {setFavorites} from "../../../../store/reducers/userSlice";
-import {addToFavorites, removeFromFavorites} from "../../../../api/firebaseFavoritesApi";
-import Loading from "../../../UI/Loading";
+import favorites_1 from "../../assets/images/favorites.svg"
+import geolocation from "../../assets/images/geolocation_icon.png"
+import Button from "../UI/Button";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {setFavorites} from "../../store/reducers/userSlice";
+import {removeFromFavorites} from "../../api/firebaseFavoritesApi";
+import Loading from "../UI/Loading";
+import {SelectedItemCardProps} from "./types";
 
 
-const SelectedItemCard = ({ selectedObject, setSelectedItem }: { selectedObject: GeoObject, setSelectedItem: (item: GeoObject) => void }) => {
+const SelectedItemCard: React.FC<SelectedItemCardProps> = ({selectedItem, setSelectedItem })  => {
 
     const user = useAppSelector((state) => state.userReducer);
     const dispatch = useAppDispatch()
@@ -26,7 +25,7 @@ const SelectedItemCard = ({ selectedObject, setSelectedItem }: { selectedObject:
 
     const handleRemoveFromFavorites = () => {
         setLoading(true)
-        removeFromFavorites(user.favorites, user.id, selectedObject.id)
+        removeFromFavorites(user.favorites, user.id, selectedItem.id)
             .then( data =>
             {
                 setLoading(false)
@@ -44,8 +43,8 @@ const SelectedItemCard = ({ selectedObject, setSelectedItem }: { selectedObject:
                 <InfoCardWrapper>
                     <InfoCardImageBox>
                         {
-                            selectedObject.external_content.length > 0 &&
-                            <img src={selectedObject.external_content[0].main_photo_url}/>
+                            selectedItem.external_content.length > 0 &&
+                            <img src={selectedItem.external_content[0].main_photo_url}/>
                         }
                     </InfoCardImageBox>
 
@@ -54,17 +53,26 @@ const SelectedItemCard = ({ selectedObject, setSelectedItem }: { selectedObject:
 
                         </InfoCardIcons>
                         <InfoCardDescription>
-                            <h2>{selectedObject.name}</h2>
+                            <h2>{selectedItem.name}</h2>
                             <p>
-                                Адрес: {selectedObject.full_address_name}
-                                {selectedObject.description}
+                                <b>Адрес:</b> {selectedItem.full_address_name}
+                                {selectedItem.description}
                             </p>
                         </InfoCardDescription>
 
                         <InfoCardButtons>
-                            <Button bgColor={"transparent"} iconColor={"#fff"} width={"45%"} icon={favorites_1} type="reset" onClick={handleRemoveFromFavorites}>Сохранено</Button>
+                            <Button
+                                bgColor={"transparent"}
+                                iconColor={"#fff"}
+                                width={"45%"}
+                                icon={favorites_1}
+                                type="reset"
+                                onClick={handleRemoveFromFavorites}
+                            >Сохранено
+                            </Button>
                             <Button bgColor={"#5E7BC7"} iconColor={"#fff"} width={"45%"} type="button" icon={geolocation} >Маршрут</Button>
                         </InfoCardButtons>
+
                     </InfoCardContent>
                 </InfoCardWrapper>
         }
