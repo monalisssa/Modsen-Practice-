@@ -1,9 +1,9 @@
 import React, {useEffect, useRef} from 'react';
 import {SearchControl} from "@pbe/react-yandex-maps";
-import {setSearchObject} from "../../../store/reducers/geoObjectsSlice";
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
+import {setSearchObject} from "../../store/reducers/geoObjectsSlice";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 
-const SearchBox = () => {
+const MapSearchControl = () => {
 
 
     const searchRef = useRef(null);
@@ -42,4 +42,4 @@ const SearchBox = () => {
     );
 };
 
-export default SearchBox;
+export default MapSearchControl;

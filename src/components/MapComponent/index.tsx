@@ -1,23 +1,15 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import {
     Map,
-    GeolocationControl,
     Placemark,
     Circle,
-    SearchControl
 } from "@pbe/react-yandex-maps";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import useGeoLocation from "../../hooks/useGeolocation";
 import {setSearchObject} from "../../store/reducers/geoObjectsSlice";
-import {GeoObject} from "../../../types";
-import {Portal} from "./Portal";
-import CustomBalloon from "./CustomBalloon";
-import GeoObjectPlacemark from "./GeoObjectPlacemark";
-import SearchBox from "./SearchBox";
-
-
-
-
+import {GeoObject} from "../../types/name";
+import GeoObjectPlacemark from "../GeoObjectPlacemark";
+import MapSearchControl from "../MapSearchControl";
 
 const circleOptions = {
     draggable: true,
@@ -26,8 +18,6 @@ const circleOptions = {
     strokeOpacity: 0.8,
     strokeWidth: 5,
 };
-
-
 
 const MapComponent = () => {
 
@@ -60,14 +50,13 @@ const MapComponent = () => {
 
             >
 
-                <SearchBox />
+                <MapSearchControl />
                 <Placemark
                     geometry={geoObjects.searchObject.point}
                     options={{
                         zIndex: 100,
                     }}
                 />
-
 
                 {geoObjects.items.length > 0 &&
                     geoObjects.items.map((item: GeoObject) => (

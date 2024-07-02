@@ -2,13 +2,10 @@ import React, {ReactNode, useState} from 'react';
 import {Placemark} from "@pbe/react-yandex-maps";
 import {Portal} from "../Portal";
 import CustomBalloon from "../CustomBalloon";
-import {GeoObject} from "../../../../types";
-import {useAppSelector} from "../../../hooks/redux";
+import {GeoObject} from "../../types/name";
+import {useAppSelector} from "../../hooks/redux";
+import {GeoObjectPlacemarkProps} from "./types";
 
-
-interface GeoObjectPlacemarkProps {
-    item: GeoObject;
-}
 
 const GeoObjectPlacemark: React.FC<GeoObjectPlacemarkProps> = ({ item }) => {
 
@@ -46,7 +43,7 @@ const GeoObjectPlacemark: React.FC<GeoObjectPlacemarkProps> = ({ item }) => {
             />
             {
                 activePortal &&
-                <Portal elementId={ 'custom-balloon' }>
+                <Portal elementId={ 'custom-balloon'}>
                     <CustomBalloon item={item}/>
                 </Portal>
             }

@@ -1,11 +1,7 @@
 import {createPortal} from "react-dom";
 import React, {ReactNode, useEffect, useLayoutEffect, useState} from "react";
+import {PortalProps} from "./types";
 
-
-interface PortalProps {
-    children: ReactNode;
-    elementId: string;
-}
 
 export const Portal: React.FC<PortalProps> = ({ children, elementId }) => {
     const [isMounted, setIsMounted] = useState(false);
