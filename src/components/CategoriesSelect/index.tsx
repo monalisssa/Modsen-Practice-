@@ -39,7 +39,7 @@ const CategoriesSelect = () => {
           {filterCategories.map((el, index) => (
             <SelectListItem
               key={index}
-              icon={el.url}
+              icon={el.icon}
               selected={el.isSelected}
               onClick={handleClick.bind(null, index)}
             >

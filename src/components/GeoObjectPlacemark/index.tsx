@@ -15,10 +15,12 @@ const GeoObjectPlacemark: React.FC<GeoObjectPlacemarkProps> = ({ item }) => {
     const matchingCategory = geoObjects.filters.find((category: any) =>
       object.rubrics.some((rubric: any) => category.categories.includes(Number(rubric.id))),
     );
+
+    const imageSize = matchingCategory?.icon ? [30, 42] : [0, 0];
     return {
       iconLayout: 'default#image',
-      iconImageHref: matchingCategory?.url,
-      iconImageSize: [30, 42],
+      iconImageHref: matchingCategory?.icon,
+      iconImageSize: imageSize,
     };
   };
 

@@ -17,7 +17,7 @@ export const SelectField = styled.div`
   color: #000;
   border: 3px solid #c4c4c4;
   padding: 15px;
-  height: 320px;
+  height: 380px;
 `;
 
 export const SelectList = styled.ul`
@@ -25,7 +25,7 @@ export const SelectList = styled.ul`
   flex-direction: column;
 
   overflow-y: scroll;
-  max-height: 300px;
+  max-height: 340px;
   &::-webkit-scrollbar {
     width: 5px;
   }

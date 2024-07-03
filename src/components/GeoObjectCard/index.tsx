@@ -21,7 +21,9 @@ const GeoObjectCard: React.FC<GeoObjectCardProps> = ({ item, selectItem, mapBall
     <ItemCardWrapper onClick={handleSelectItem} mapBalloon={mapBalloon}>
       <ItemCardHeader>
         <ItemImageBox>
-          <img src={item.external_content[0].main_photo_url} />
+          {item.external_content.length > 0 && (
+            <img src={item.external_content[0].main_photo_url} />
+          )}
         </ItemImageBox>
         <h2>{item.name}</h2>
       </ItemCardHeader>
