@@ -48,7 +48,7 @@ const MapComponent = () => {
     >
       <MapSearchControl />
       {geoObjects.routeToObject && (
-        <MapRoute map={map} ymaps={ymaps} item={geoObjects.routeToObject} />
+        <MapRoute map={map} ymaps={ymaps} />
       )}
 
       <Placemark
