@@ -1,7 +1,7 @@
-import {GeoObject} from "../../types/name";
+import { GeoObject } from '../../types/name';
 
 export interface GeoObjectCardProps {
-    item: GeoObject;
-    selectItem?: (item: GeoObject) => void;
-    mapBalloon?: boolean;
+  item: GeoObject;
+  selectItem?: (item: GeoObject) => void;
+  mapBalloon?: boolean;
 }

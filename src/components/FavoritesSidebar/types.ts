@@ -1,3 +1,3 @@
 export interface FavoritesSidebarProperties {
-    open: boolean;
+  open: boolean;
 }

@@ -1,6 +1,6 @@
-import {GeoObject} from "../../types/name";
+import { GeoObject } from '../../types/name';
 
 export interface CustomBalloonProps {
-    item: GeoObject;
-    handleCloseBalloon: () => void
+  item: GeoObject;
+  handleCloseBalloon: () => void;
 }

@@ -1,6 +1,6 @@
-import {GeoObject} from "../../types/name";
+import { GeoObject } from '../../types/name';
 
 export interface SelectedItemCardProps {
-    selectedItem: GeoObject;
-    setSelectedItem: (item: GeoObject) => void;
+  selectedItem: GeoObject;
+  setSelectedItem: (item: GeoObject) => void;
 }

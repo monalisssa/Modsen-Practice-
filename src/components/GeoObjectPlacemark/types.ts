@@ -1,5 +1,5 @@
-import {GeoObject} from "../../types/name";
+import { GeoObject } from '../../types/name';
 
 export interface GeoObjectPlacemarkProps {
-    item: GeoObject;
+  item: GeoObject;
 }

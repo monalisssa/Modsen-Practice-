@@ -1,3 +1,3 @@
 export interface SearchSidebarProperties {
-    open: boolean;
+  open: boolean;
 }

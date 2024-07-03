@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const slideIn = keyframes`
   from {
@@ -19,32 +19,24 @@ const slideOut = keyframes`
 `;
 
 //Styled Components
-export const DrawerWrapper = styled.div<{open: boolean}>`
-    position: fixed;
-    z-index: 10;
-    width: 400px;
-    height: 97%;
-    padding: 25px;
-    margin: 10px;
-    background-color: #fff;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-    animation-name: ${(props) => props.open ? slideIn : slideOut};
-    display: flex;
-    flex-direction: column;
-    gap:20px;
-    
-    & h3{
-        font-weight: bold;
-        cursor: pointer;
-    }
+export const DrawerWrapper = styled.div<{ open: boolean }>`
+  position: fixed;
+  z-index: 10;
+  width: 400px;
+  height: 97%;
+  padding: 25px;
+  margin: 10px;
+  background-color: #fff;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-name: ${(props) => (props.open ? slideIn : slideOut)};
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
-
-
-    
-   
-    
+  & h3 {
+    font-weight: bold;
+    cursor: pointer;
+  }
 `;
-
-

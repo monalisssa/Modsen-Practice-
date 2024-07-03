@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const rotation = keyframes`
     from {
@@ -14,7 +14,7 @@ export const StyledLoading = styled.div`
   height: 48px;
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   margin: 0 auto;
   border: 5px solid #ccc;
   border-bottom-color: transparent;

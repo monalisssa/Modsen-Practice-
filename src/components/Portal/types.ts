@@ -1,6 +1,6 @@
-import {ReactNode} from "react";
+import { ReactNode } from 'react';
 
 export interface PortalProps {
-    children: ReactNode;
-    elementId: string;
+  children: ReactNode;
+  elementId: string;
 }
