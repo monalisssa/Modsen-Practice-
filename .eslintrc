@@ -18,7 +18,12 @@
         },
         "rules": {
                 "react/prop-types": 0,
-                "prettier/prettier": 1,
+                "prettier/prettier": [
+                        "error",
+                        {
+                                "endOfLine": "auto"
+                        }
+                ],
                 "@typescript-eslint/no-explicit-any": 0,
                 "@typescript-eslint/explicit-function-return-type": 0,
                 "@typescript-eslint/explicit-module-boundary-types": 0

@@ -47,9 +47,7 @@ const MapComponent = () => {
       onLoad={(ymaps) => setYmaps(ymaps)}
     >
       <MapSearchControl />
-      {geoObjects.routeToObject && (
-        <MapRoute map={map} ymaps={ymaps} />
-      )}
+      {geoObjects.routeToObject && <MapRoute map={map} ymaps={ymaps} />}
 
       <Placemark
         geometry={geoObjects.searchObject.point}
