@@ -21,7 +21,7 @@ export const ItemCardHeader = styled.div`
 
   & h2 {
     width: 180px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
   }
 `;
