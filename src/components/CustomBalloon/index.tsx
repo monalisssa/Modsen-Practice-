@@ -10,14 +10,18 @@ import {CustomBalloonButtons} from "./styled";
 import {setFavorites} from "../../store/reducers/userSlice";
 import {addToFavorites} from "../../api/firebaseFavoritesApi";
 import {CustomBalloonProps} from "./types";
+import MapRoute from "../MapRoute";
+import {set} from "@pbe/react-yandex-maps/typings/util/set";
+import {setRouteToObject} from "../../store/reducers/geoObjectsSlice";
 
 
-const CustomBalloon: React.FC<CustomBalloonProps> = ({item }) => {
+const CustomBalloon: React.FC<CustomBalloonProps> = ({item, handleCloseBalloon }) => {
 
     const user = useAppSelector((state) => state.userReducer);
     const geoObjects = useAppSelector((state) => state.geoObjectsReducer);
     const dispatch = useAppDispatch()
     const [isFavorite, setIsFavorite] = useState(false)
+    const [viewRoute, setViewRoute] = useState(false)
 
 
     useEffect(() => {
@@ -44,13 +48,21 @@ const CustomBalloon: React.FC<CustomBalloonProps> = ({item }) => {
 
     };
 
+
+    const handleSetViewRoute = () =>
+    {
+        dispatch(setRouteToObject(item))
+        handleCloseBalloon()
+    }
+
     return (
         <>
             <GeoObjectCard item={item} mapBalloon={true}/>
             <CustomBalloonButtons>
                 <Button bgColor={"#C75E5E"} iconColor={"#fff"} width={"45%"} icon={favorites_1} type="button" onClick={handleAddToFavorites}>В избранное</Button>
-                <Button bgColor={"#5E7BC7"} iconColor={"#fff"} width={"45%"} type="button" icon={geolocation} >Маршрут</Button>
+                <Button bgColor={"#5E7BC7"} iconColor={"#fff"} width={"45%"} type="button" icon={geolocation} onClick={handleSetViewRoute}>Маршрут</Button>
             </CustomBalloonButtons>
+
         </>
 
 

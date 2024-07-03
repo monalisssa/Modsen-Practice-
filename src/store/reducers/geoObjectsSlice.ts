@@ -1,17 +1,19 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IFilterIcon} from "../../constants/arrayCategories";
+import {GeoObject} from "../../types/name";
 
 
 interface GeoObjectsState {
-    items: any;
+    items: GeoObject[];
     isLoading: boolean;
     error: string;
     searchObject: {
         name: string,
         point: number[]
     }
-    radius: number,
-    filters: Array<IFilterIcon>
+    radius: number;
+    filters: Array<IFilterIcon>;
+    routeToObject: GeoObject;
 }
 
 const initialState: GeoObjectsState = {
@@ -22,6 +24,7 @@ const initialState: GeoObjectsState = {
         name: '',
         point: [0,0]
     },
+    routeToObject: null,
     radius: 100,
     filters: []
 };
@@ -39,10 +42,13 @@ export const geoObjectsSlice = createSlice({
         setFilters(state, action: PayloadAction<Array<IFilterIcon>>) {
             state.filters = action.payload;
         },
+        setRouteToObject(state, action: PayloadAction<GeoObject>) {
+            state.routeToObject = action.payload;
+        },
         geoObjectsFetching(state) {
             state.isLoading = true;
         },
-        geoObjectsFetchingSuccess(state, action: PayloadAction<any>) {
+        geoObjectsFetchingSuccess(state, action: PayloadAction<GeoObject[]>) {
             state.isLoading = false;
             state.error = '';
             state.items = action.payload;
@@ -57,7 +63,8 @@ export const geoObjectsSlice = createSlice({
 export const {
     setSearchObject,
     setRadius,
-    setFilters
+    setFilters,
+    setRouteToObject
 } = geoObjectsSlice.actions;
 
 export default geoObjectsSlice.reducer;

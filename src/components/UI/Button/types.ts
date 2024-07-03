@@ -1,12 +1,15 @@
 import React from "react";
+import {GeoObject} from "../../../types/name";
+
+type ClickHandler = () => void | ((email: string, pass: string) => void)
 
 export interface ButtonProps {
     icon?: any;
-    text?: string,
+    text?: string;
     bgColor: string;
-    iconColor: string,
+    iconColor: string;
     width: string;
     type?: 'button' | 'submit' | 'reset';
-    onClick?: () => void | ((email: string, pass: string) => void);
+    onClick?: ClickHandler;
     children?: React.ReactNode;
 }

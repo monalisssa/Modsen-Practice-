@@ -1,7 +1,7 @@
 import axios from "axios";
 import {IFilterIcon} from "../constants/arrayCategories";
 
-const API_KEY = "fe79cc20-873d-4aa7-8d56-dfb6e27348aa"
+const API_KEY = "c12ba239-a95d-4d9b-8eb0-b21bf408464c"
 
 export async function searchObjects(coordinates: { lat: number; lng: number }, radius: number, filters: Array<IFilterIcon>) {
     try {

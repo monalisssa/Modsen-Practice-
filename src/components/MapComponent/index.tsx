@@ -10,6 +10,7 @@ import {setSearchObject} from "../../store/reducers/geoObjectsSlice";
 import {GeoObject} from "../../types/name";
 import GeoObjectPlacemark from "../GeoObjectPlacemark";
 import MapSearchControl from "../MapSearchControl";
+import MapRoute from "../MapRoute";
 
 const circleOptions = {
     draggable: true,
@@ -25,7 +26,7 @@ const MapComponent = () => {
      const geoObjects = useAppSelector(state => state.geoObjectsReducer)
      const dispatch = useAppDispatch()
      const map = useRef(null);
-
+     const [ymaps, setYmaps] = useState(null);
 
     useEffect(() => {
         if(userLocation) dispatch(setSearchObject({name: "", point: [userLocation.latitude, userLocation.longitude]}))
@@ -46,11 +47,17 @@ const MapComponent = () => {
                 instanceRef={map}
                 width={1535}
                 height={735}
-                modules={['geoObject.addon.balloon', 'geoObject.addon.hint' ]}
+                modules={['geoObject.addon.balloon', 'geoObject.addon.hint', "multiRouter.MultiRoute" ]}
+                onLoad={ymaps => setYmaps(ymaps)}
 
             >
 
                 <MapSearchControl />
+                {
+                    geoObjects.routeToObject &&
+                    <MapRoute map={map} ymaps={ymaps} item={geoObjects.routeToObject}/>
+                }
+
                 <Placemark
                     geometry={geoObjects.searchObject.point}
                     options={{

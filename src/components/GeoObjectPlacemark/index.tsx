@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from 'react';
+import React, {ReactNode, useRef, useState} from 'react';
 import {Placemark} from "@pbe/react-yandex-maps";
 import {Portal} from "../Portal";
 import CustomBalloon from "../CustomBalloon";
@@ -12,6 +12,7 @@ const GeoObjectPlacemark: React.FC<GeoObjectPlacemarkProps> = ({ item }) => {
     const [activePortal, setActivePortal ] = useState(false)
     const geoObjects = useAppSelector(state => state.geoObjectsReducer)
 
+    const placemark = useRef(null)
     const getPlacemarkOptions = (object: GeoObject) => {
         const matchingCategory = geoObjects.filters.find((category: any) =>
             object.rubrics.some((rubric: any) =>
@@ -29,11 +30,18 @@ const GeoObjectPlacemark: React.FC<GeoObjectPlacemarkProps> = ({ item }) => {
     {
         setActivePortal(!activePortal)
     }
+
+    const handleCloseBalloon = () =>
+    {
+        if(placemark.current) placemark.current.balloon.close()
+        setActivePortal(false)
+    }
     return (
         <>
             <Placemark
                 key={item.id}
                 geometry={[item.point.lat, item.point.lon]}
+                instanceRef={placemark}
                 options={getPlacemarkOptions(item)}
                 properties={{
                     balloonContent: '<div id="custom-balloon" class="balloon-card"></div>'
@@ -44,7 +52,7 @@ const GeoObjectPlacemark: React.FC<GeoObjectPlacemarkProps> = ({ item }) => {
             {
                 activePortal &&
                 <Portal elementId={ 'custom-balloon'}>
-                    <CustomBalloon item={item}/>
+                    <CustomBalloon item={item} handleCloseBalloon={handleCloseBalloon }/>
                 </Portal>
             }
         </>

@@ -15,6 +15,7 @@ import {setFavorites} from "../../store/reducers/userSlice";
 import {removeFromFavorites} from "../../api/firebaseFavoritesApi";
 import Loading from "../UI/Loading";
 import {SelectedItemCardProps} from "./types";
+import {setRouteToObject} from "../../store/reducers/geoObjectsSlice";
 
 
 const SelectedItemCard: React.FC<SelectedItemCardProps> = ({selectedItem, setSelectedItem })  => {
@@ -34,6 +35,11 @@ const SelectedItemCard: React.FC<SelectedItemCardProps> = ({selectedItem, setSel
             })
             .catch(e => console.log(e.message()))
     };
+
+    const handleSetViewRoute = () =>
+    {
+        dispatch(setRouteToObject(selectedItem))
+    }
 
     return (
         <>
@@ -70,7 +76,7 @@ const SelectedItemCard: React.FC<SelectedItemCardProps> = ({selectedItem, setSel
                                 onClick={handleRemoveFromFavorites}
                             >Сохранено
                             </Button>
-                            <Button bgColor={"#5E7BC7"} iconColor={"#fff"} width={"45%"} type="button" icon={geolocation} >Маршрут</Button>
+                            <Button bgColor={"#5E7BC7"} iconColor={"#fff"} width={"45%"} type="button" icon={geolocation} onClick={handleSetViewRoute}>Маршрут</Button>
                         </InfoCardButtons>
 
                     </InfoCardContent>
