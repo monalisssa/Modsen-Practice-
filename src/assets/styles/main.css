@@ -11,3 +11,15 @@ body {
   height: 230px;
   background-color: #fff;
 }
+
+#YMapsID{
+  height:100%;
+}
+
+@media (max-width: 767px) {
+  .balloon-card {
+    width: 200px;
+    height: 330px;
+    background-color: #fff;
+  }
+}

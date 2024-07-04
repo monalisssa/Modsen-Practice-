@@ -8,6 +8,7 @@ const HomePage = () => {
   return (
     <>
       <MenuBar />
+
       <YMaps
         query={{
           apikey: API_KEY,

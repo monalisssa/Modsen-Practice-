@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../constants/breakpoints';
 
 export const RouteModal = styled.div`
   position: fixed;
@@ -10,6 +11,11 @@ export const RouteModal = styled.div`
   z-index: 10;
   padding: 30px;
   border-radius: 10px;
+
+  @media (${device.laptop}) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `;
 
 export const CloseButton = styled.div`

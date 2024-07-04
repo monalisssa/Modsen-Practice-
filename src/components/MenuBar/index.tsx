@@ -41,6 +41,14 @@ const MenuBar = () => {
       setNotification(false);
     }, 4000);
   };
+
+  const handleCloseFavoritesSidebar = () => {
+    setOpenFavoritesSideBar(!openFavoritesSideBar);
+  };
+
+  const handleCloseSearchSidebar = () => {
+    setOpenSearchSideBar(!openSearchSideBar);
+  };
   return (
     <>
       <MenuBarContainer>
@@ -69,8 +77,12 @@ const MenuBar = () => {
           <img width={50} src={user_icon} onClick={handleExit} />
         )}
       </MenuBarContainer>
-      {openSearchSideBar && <SearchSidebar open={openSearchSideBar} />}
-      {openFavoritesSideBar && <FavoritesSidebar open={openFavoritesSideBar} />}
+      {openSearchSideBar && (
+        <SearchSidebar open={openSearchSideBar} handleClose={handleCloseSearchSidebar} />
+      )}
+      {openFavoritesSideBar && (
+        <FavoritesSidebar open={openFavoritesSideBar} handleClose={handleCloseFavoritesSidebar} />
+      )}
       {notification && (
         <Notification bgColor={'#405F7B'} icon={warning}>
           Вы вышли из аккаунта!

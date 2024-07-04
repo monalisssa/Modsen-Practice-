@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../constants/breakpoints';
 
 export const InfoCardWrapper = styled.div`
   min-height: 60%;
@@ -9,6 +10,10 @@ export const InfoCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+    
+  @media (${device.laptop}) {  
+      min-height: 80%;
+  }
 `;
 
 export const InfoCardImageBox = styled.div`
@@ -17,14 +22,19 @@ export const InfoCardImageBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 250px; // Set the desired height of the image box
-  overflow: hidden; // This will crop the image
+  height: 250px;
+  overflow: hidden;
   border-radius: 15px;
   align-self: center;
   & img {
     width: 100%;
-    height: auto; // This will maintain the aspect ratio of the image
+    height: auto;
   }
+
+    @media (${device.laptop}) {
+        width: 300px
+    }
+    
 `;
 
 export const InfoCardContent = styled.div`
@@ -47,7 +57,7 @@ export const InfoCardDescription = styled.div`
   }
   & p {
     font-size: 13px;
-    line-height: 12px;
+    line-height: 15px;
     color: #373737;
     text-align: justify;
     margin-top: 10px;

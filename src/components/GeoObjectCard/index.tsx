@@ -19,7 +19,7 @@ const GeoObjectCard: React.FC<GeoObjectCardProps> = ({ item, selectItem, mapBall
 
   return (
     <ItemCardWrapper onClick={handleSelectItem} mapBalloon={mapBalloon}>
-      <ItemCardHeader>
+      <ItemCardHeader mapBalloon={mapBalloon}>
         <ItemImageBox>
           {item.external_content.length > 0 && (
             <img src={item.external_content[0].main_photo_url} />
@@ -29,7 +29,9 @@ const GeoObjectCard: React.FC<GeoObjectCardProps> = ({ item, selectItem, mapBall
       </ItemCardHeader>
 
       <ItemCardContent>
-        <b>Адрес:</b> {item.full_address_name}
+        <b>Адрес:</b> {item.full_address_name} <br />
+        <b>Расписание:</b> С {item.schedule.Fri.working_hours[0].from} до{' '}
+        {item.schedule.Fri.working_hours[0].to}
         {item.description}
       </ItemCardContent>
 

@@ -8,6 +8,16 @@ export interface GeoObject {
       main_photo_url: string;
     },
   ];
+  schedule: {
+    Fri: {
+      working_hours: [
+        {
+          from: '10:00';
+          to: '22:00';
+        },
+      ];
+    };
+  };
   full_address_name: string;
   description?: string;
   point: {

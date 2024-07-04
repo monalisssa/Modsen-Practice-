@@ -42,7 +42,7 @@ const Login = () => {
 
       {notification && (
         <Notification bgColor={'#ec5353'} icon={warning}>
-          Пользователь с такой почтой или паролем уже существует!
+          Неправильный логин или пароль!
         </Notification>
       )}
     </>

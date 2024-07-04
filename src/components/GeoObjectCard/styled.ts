@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { device } from '../../constants/breakpoints';
 
 export const ItemCardWrapper = styled.div<{ mapBalloon: boolean }>`
-  min-height: ${(props) => (!props.mapBalloon ? '200px' : '100px')};
+  min-height: ${(props) => (!props.mapBalloon ? '220px' : '100px')};
   width: 100%;
   border-radius: 10px;
   padding: 12px;
@@ -14,7 +15,7 @@ export const ItemCardWrapper = styled.div<{ mapBalloon: boolean }>`
   }
 `;
 
-export const ItemCardHeader = styled.div`
+export const ItemCardHeader = styled.div<{ mapBalloon: boolean }>`
   display: flex;
   gap: 20px;
   align-items: center;
@@ -23,6 +24,11 @@ export const ItemCardHeader = styled.div`
     width: 180px;
     font-size: 14px;
     font-weight: bold;
+  }
+
+  @media (${device.laptop}) {
+    flex-direction: ${(props) => (!props.mapBalloon ? 'row' : 'column')};
+    text-align: ${(props) => (!props.mapBalloon ? 'left' : 'center')};
   }
 `;
 
@@ -54,4 +60,5 @@ export const ItemCardButtons = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+    
 `;

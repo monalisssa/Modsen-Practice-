@@ -65,7 +65,7 @@ module.exports = (env: EnvVariables): Configuration => {
     },
     devtool: isDev ? 'inline-source-map' : false,
     devServer: {
-      port: env.port ?? 3000,
+      port: env.port ?? 3013,
       static: {
         directory: path.join(__dirname, 'dist'),
       },

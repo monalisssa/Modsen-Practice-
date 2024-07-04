@@ -14,9 +14,10 @@ export const SNotification = styled.div<{ bgColor: string }>`
   color: #fff;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
-
+  font-size: 15px;
   & img {
-    width: 50px;
+    width: 30px;
   }
 `;

@@ -5,10 +5,14 @@ import CustomBalloon from '../CustomBalloon';
 import { GeoObject } from '../../types/name';
 import { useAppSelector } from '../../hooks/redux';
 import { GeoObjectPlacemarkProps } from './types';
+import Notification from '../UI/Notification';
+import warning from '../../assets/images/warning.png';
 
 const GeoObjectPlacemark: React.FC<GeoObjectPlacemarkProps> = ({ item }) => {
   const [activePortal, setActivePortal] = useState(false);
   const geoObjects = useAppSelector((state) => state.geoObjectsReducer);
+  const [notification, setNotification] = useState(false);
+  const [authNotification, setAuthNotification] = useState(false);
 
   const placemark = useRef(null);
   const getPlacemarkOptions = (object: GeoObject) => {
@@ -32,6 +36,20 @@ const GeoObjectPlacemark: React.FC<GeoObjectPlacemarkProps> = ({ item }) => {
     if (placemark.current) placemark.current.balloon.close();
     setActivePortal(false);
   };
+
+  const handleViewNotification = () => {
+    setNotification(true);
+    setTimeout(() => {
+      setNotification(false);
+    }, 4000);
+  };
+
+  const handleViewAuthNotification = () => {
+    setAuthNotification(true);
+    setTimeout(() => {
+      setAuthNotification(false);
+    }, 4000);
+  };
   return (
     <>
       <Placemark
@@ -47,8 +65,25 @@ const GeoObjectPlacemark: React.FC<GeoObjectPlacemarkProps> = ({ item }) => {
       />
       {activePortal && (
         <Portal elementId={'custom-balloon'}>
-          <CustomBalloon item={item} handleCloseBalloon={handleCloseBalloon} />
+          <CustomBalloon
+            item={item}
+            handleCloseBalloon={handleCloseBalloon}
+            handleViewNotification={handleViewNotification}
+            handleViewAuthNotification={handleViewAuthNotification}
+          />
         </Portal>
+      )}
+
+      {notification && (
+        <Notification bgColor={'#C75E5E'} icon={warning}>
+          Место успешно добавлено в избранное!
+        </Notification>
+      )}
+
+      {authNotification && (
+        <Notification bgColor={'#ec5353'} icon={warning}>
+          Необходимо авторизоваться!
+        </Notification>
       )}
     </>
   );

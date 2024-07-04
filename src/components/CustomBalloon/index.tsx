@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import GeoObjectCard from '../GeoObjectCard';
 import Button from '../UI/Button';
@@ -9,8 +9,10 @@ import { setFavorites } from '../../store/reducers/userSlice';
 import { addToFavorites } from '../../api/firebaseFavoritesApi';
 import { CustomBalloonProps } from './types';
 import { setRouteToObject } from '../../store/reducers/geoObjectsSlice';
+import Notification from '../UI/Notification';
+import warning from '../../assets/images/warning.png';
 
-const CustomBalloon: React.FC<CustomBalloonProps> = ({ item, handleCloseBalloon }) => {
+const CustomBalloon: React.FC<CustomBalloonProps> = ({ item, handleCloseBalloon, handleViewNotification, handleViewAuthNotification }) => {
   const user = useAppSelector((state) => state.userReducer);
   const dispatch = useAppDispatch();
 
@@ -19,9 +21,10 @@ const CustomBalloon: React.FC<CustomBalloonProps> = ({ item, handleCloseBalloon 
       addToFavorites(user.id, item)
         .then((data) => {
           dispatch(setFavorites(data));
+          handleViewNotification();
         })
         .catch((e) => console.log(e.message()));
-    }
+    } else handleViewAuthNotification()
   };
 
   const handleSetViewRoute = () => {

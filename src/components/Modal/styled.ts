@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { device } from '../../constants/breakpoints';
 
 const slideIn = keyframes`
   from {
@@ -42,6 +43,10 @@ export const ModalContent = styled.div`
 
   & a:hover {
     color: #000;
+  }
+
+  @media (${device.laptop}) {
+    width: 80%;
   }
 `;
 

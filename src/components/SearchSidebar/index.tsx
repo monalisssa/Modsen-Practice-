@@ -8,8 +8,9 @@ import { fetchGeoObjects } from '../../store/actions/geoObjectsActions';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import Button from '../UI/Button';
 import { SearchSidebarProperties } from './types';
+import { CloseButton } from '../MapRoute/styled';
 
-const SearchSidebar: React.FC<SearchSidebarProperties> = ({ open }) => {
+const SearchSidebar: React.FC<SearchSidebarProperties> = ({ open, handleClose}) => {
   const dispatch = useAppDispatch();
   const geoObjects = useAppSelector((state) => state.geoObjectsReducer);
 
@@ -23,8 +24,11 @@ const SearchSidebar: React.FC<SearchSidebarProperties> = ({ open }) => {
     );
   };
 
+
+
   return (
     <DrawerWrapper open={open}>
+      <CloseButton onClick={handleClose} />
       <SearchField />
       <CategoriesSelect />
       <RadiusField />

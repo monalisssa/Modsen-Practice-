@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   InfoCardButtons,
   InfoCardContent,
@@ -17,22 +17,24 @@ import Loading from '../UI/Loading';
 import { SelectedItemCardProps } from './types';
 import { setRouteToObject } from '../../store/reducers/geoObjectsSlice';
 
-const SelectedItemCard: React.FC<SelectedItemCardProps> = ({ selectedItem, setSelectedItem }) => {
+const SelectedItemCard: React.FC<SelectedItemCardProps> = ({ selectedItem,  handleRemoveItem}) => {
   const user = useAppSelector((state) => state.userReducer);
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
 
   const handleRemoveFromFavorites = () => {
-    setLoading(true);
     removeFromFavorites(user.favorites, user.id, selectedItem.id)
       .then((data) => {
-        setLoading(false);
         dispatch(setFavorites(data));
-        setSelectedItem(null);
+        handleRemoveItem();
       })
       .catch((e) => console.log(e.message()));
   };
 
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 1000);
+  }, []);
   const handleSetViewRoute = () => {
     dispatch(setRouteToObject(selectedItem));
   };
@@ -54,7 +56,9 @@ const SelectedItemCard: React.FC<SelectedItemCardProps> = ({ selectedItem, setSe
             <InfoCardDescription>
               <h2>{selectedItem.name}</h2>
               <p>
-                <b>Адрес:</b> {selectedItem.full_address_name}
+                <b>Адрес:</b> {selectedItem.full_address_name} <br/>
+                <b>Расписание:</b> С {selectedItem.schedule.Fri.working_hours[0].from} до{' '}
+                {selectedItem.schedule.Fri.working_hours[0].to}
                 {selectedItem.description}
               </p>
             </InfoCardDescription>
