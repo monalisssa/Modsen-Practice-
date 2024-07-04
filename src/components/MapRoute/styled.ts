@@ -18,10 +18,6 @@ export const CloseButton = styled.div`
   right: 20px;
   cursor: pointer;
   padding: 5px;
-  transition: transform 0.2s ease-in-out;
-  &:hover {
-    transform: scale(1.2);
-  }
 
   &:before,
   &:after {

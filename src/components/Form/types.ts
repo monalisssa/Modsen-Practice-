@@ -8,7 +8,7 @@ const passwordRules = {
 
 export interface FormProps {
   type: string;
-  handleSubmitForm: (email: string, pass: string) => void;
+  submitForm: (email: string, pass: string) => void;
 }
 
 export interface FormValues {
