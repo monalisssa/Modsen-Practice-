@@ -1,33 +1,14 @@
 import React from 'react';
-import {Styled, IconWrapper} from "./styled";
+import { Styled } from './styled';
+import { ButtonProps } from './types';
 
-
-interface ButtonProps {
-    icon?: any;
-    text?: string,
-    bgColor: string;
-    iconColor: string,
-    width: string;
-    type?: 'button' | 'submit' | 'reset';
-    onClick?: () => void | ((email: string, pass: string) => void);
-    children?: React.ReactNode;
-}
-
-
-
-const Button: React.FC<ButtonProps> = ({icon, iconColor, bgColor, width, onClick, children, type}) => {
-    return (
-        <Styled
-            bgColor={bgColor}
-            width={width}
-            onClick={onClick}
-            type={type}
-        >
-            {icon &&
-                    <img src={icon}/>}
-            {children}
-        </Styled>
-    );
+const Button: React.FC<ButtonProps> = ({ icon, bgColor, width, onClick, children, type }) => {
+  return (
+    <Styled bgColor={bgColor} width={width} onClick={onClick} type={type}>
+      {icon && <img src={icon} />}
+      {children}
+    </Styled>
+  );
 };
 
-export default Button
+export default Button;

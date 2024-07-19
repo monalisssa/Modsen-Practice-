@@ -1,25 +1,27 @@
 @font-face {
-    font-family: 'Mont';
-    src: url('../fonts/Mont-Regular.eot');
-    src: local('Mont Regular'), local('Mont-Regular'),
+  font-family: 'Mont';
+  src: url('../fonts/Mont-Regular.eot');
+  src:
+    local('Mont Regular'),
+    local('Mont-Regular'),
     url('../fonts/Mont-Regular.eot?#iefix') format('embedded-opentype'),
     url('../fonts/Mont-Regular.woff2') format('woff2'),
     url('../fonts/Mont-Regular.woff') format('woff'),
     url('../fonts/Mont-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-weight: normal;
+  font-style: normal;
 }
 
-
-
 @font-face {
-    font-family: 'Mont';
-    src: url('../fonts/Mont-Bold.eot');
-    src: local('Mont Bold'), local('Mont-Bold'),
+  font-family: 'Mont';
+  src: url('../fonts/Mont-Bold.eot');
+  src:
+    local('Mont Bold'),
+    local('Mont-Bold'),
     url('../fonts/Mont-Bold.eot?#iefix') format('embedded-opentype'),
     url('../fonts/Mont-Bold.woff2') format('woff2'),
     url('../fonts/Mont-Bold.woff') format('woff'),
     url('../fonts/Mont-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
+  font-weight: bold;
+  font-style: normal;
 }

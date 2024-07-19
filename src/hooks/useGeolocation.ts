@@ -1,40 +1,40 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from 'react';
 
 type GeoLocationPosition = {
-    latitude: number;
-    longitude: number;
+  latitude: number;
+  longitude: number;
 };
 
 type GeoLocationError = string;
 
 const useGeoLocation = () => {
-    const [location, setLocation] = useState<GeoLocationPosition | null>(null);
-    const [location_error, setLocation_error] = useState<GeoLocationError | null>(null);
+  const [location, setLocation] = useState<GeoLocationPosition | null>(null);
+  const [location_error, setLocation_error] = useState<GeoLocationError | null>(null);
 
-    const refresh = () => {
-        setLocation(null);
-        setLocation_error(null);
+  const refresh = () => {
+    setLocation(null);
+    setLocation_error(null);
+  };
+
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      setLocation_error('Geolocation is not supported by the browser.');
+      return;
+    }
+
+    const handleSuccess = (position: GeolocationPosition) => {
+      const { latitude, longitude } = position.coords;
+      setLocation({ latitude, longitude });
     };
 
-    useEffect(() => {
-        if (!navigator.geolocation) {
-            setLocation_error('Geolocation is not supported by the browser.');
-            return;
-        }
+    const handleError = (error: GeolocationPositionError) => {
+      setLocation_error(error.message);
+    };
 
-        const handleSuccess = (position: GeolocationPosition) => {
-            const { latitude, longitude } = position.coords;
-            setLocation({ latitude, longitude });
-        };
+    navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
+  }, []);
 
-        const handleError = (error: GeolocationPositionError) => {
-            setLocation_error(error.message);
-        };
-
-        navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
-    }, []);
-
-    return { location, location_error, refresh };
+  return { location, location_error, refresh };
 };
 
 export default useGeoLocation;
